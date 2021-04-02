@@ -48,10 +48,18 @@ table.no_border, th.no_border, td.no_border {
   border-collapse: collapse;
 }
 
-table { page-break-inside:auto }
-thead { display: table-header-group }
+table { page-break-inside: auto }
+/* table { page-break-inside:avoid; } */
+/* thead { display: table-header-group } */
+thead { display: table-row-group }
 tfoot { display: table-row-group }
-tr { page-break-inside: avoid }
+/* tr { page-break-inside: avoid } */
+tr { 
+  page-break-inside: avoid !important;
+}
+td {
+  page-break-inside: avoid !important;
+}
 
 table, th, td {
   border: 1px solid black;

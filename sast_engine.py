@@ -1,6 +1,7 @@
 # -*- coding: utf_8 -*-
 """SAST engine."""
 import logging
+import collections
 
 from libsast import Scanner
 
@@ -73,4 +74,11 @@ def format_findings(findings, root):
             else:
                 tmp_dict[file_path] += ',' + str(match_lines)
         details['files'] = tmp_dict
+    
+    # sort the result with filepath
+    for details in findings.values():
+        tmp_dict = collections.OrderedDict()
+        for key in sorted(details['files'].keys()):
+            tmp_dict[key] = details['files'][key]
+        details['files'] =  tmp_dict
     return findings

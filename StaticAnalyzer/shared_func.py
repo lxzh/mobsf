@@ -103,11 +103,11 @@ def unzip(app_path, ext_path):
                 logger.exception('Unzipping Error')
 
 
-def pdf(checksum, dir, pdfpath):
+def html_and_pdf(context, checksum, dir, htmlpath, pdfpath):
     try:
-        android_static_db = StaticAnalyzerAndroid.objects.filter(
-            MD5=checksum)
-        context = handle_pdf_android(android_static_db)
+        # android_static_db = StaticAnalyzerAndroid.objects.filter(
+        #     MD5=checksum)
+        # context = handle_pdf_android(android_static_db)
 
         template = get_pdf_template_android()    # Django template
         # template = get_pdf_template_android1() # jinja2 template
@@ -155,6 +155,8 @@ def pdf(checksum, dir, pdfpath):
                 options['proxy'] = proxies['https']
 
             html = template.render(context)
+            logger.info("Generating Html Report to:%s"%htmlpath)
+            write_to_file(html, htmlpath)
             # html = template.render(context).encode('utf-8')
             logger.info("Generating PDF Report to:%s"%pdfpath)
             pdfkit.from_string(html, pdfpath, options=options)
@@ -162,6 +164,11 @@ def pdf(checksum, dir, pdfpath):
             logger.exception('Error Generating PDF Report:%s'%str(exp))
     except Exception as exp:
         logger.exception('Error Generating PDF Report%s'%str(exp))
+
+def write_to_file(html, htmlpath):
+    out = open(htmlpath, mode = 'w', encoding = 'utf-8-sig')
+    out.write(html)
+    out.close
 
 def handle_pdf_android(static_db):
     logger.info(
@@ -176,6 +183,7 @@ def handle_pdf_android(static_db):
         logger.info('Generating PDF report for android apk')
     return context
 
+# 注册 template 自定义过滤器
 @register.filter
 def key(d, key_name):
     """To get dict element by key name in template."""

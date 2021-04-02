@@ -478,15 +478,15 @@
                 <tbody>
                    {% for rule, details in code_analysis.items %}
                   <tr>
-                  <td>{{ forloop.counter }}</td>
-                  <td width="20%">
+                  <td width="5%">{{ forloop.counter }}</td>
+                  <td width="15%">
                     {% if details.metadata|key:"ref" %}
                     <a href="{{details.metadata.ref}}" target="_blank" rel="noopener"> {{ details.metadata.description }}</a>
                     {% else %}
                       {{ details.metadata.description }}
                     {% endif %}
                   </td>
-                  <td width="10%">
+                  <td width="5%">
                       {% if details.metadata.severity == "high" %}
                       <span class="danger">high</span>
                       {% elif details.metadata.severity == "good" %}
@@ -497,7 +497,7 @@
                       <span class="info">info</span>
                       {% endif %}
                   </td>
-                  <td width="20%">
+                  <td width="15%">
                       <strong>CVSS V2:</strong> {{ details.metadata.cvss }}
                       {% if details.metadata.cvss > 6 %}
                         <span class="danger"> (high)</span>
@@ -518,7 +518,7 @@
                       <strong>OWASP MASVS: </strong>{{ details.metadata.masvs }}
                       {% endif %}
                   </td>
-                 <td  width="40%" style="word-break:break-all;">
+                 <td width="60%" style="word-break:break-all;">
                   {% for file_path in details.files %}
                     {{ file_path }}
                   <br/>

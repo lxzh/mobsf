@@ -6,18 +6,13 @@ from utils import md5
 
 import settings
 import django
-from django.conf import settings as djs
-from django.conf import global_settings
-from django.utils.log import configure_logging
 
 def main():
     if(len(sys.argv)!=2):
         return
 
-    # djs.configure()
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
     django.setup()
-    # configure_logging('logging.config.dictConfig', settings.LOGGING)
     global TEMPLATES
     TEMPLATES = settings.TEMPLATES
 
