@@ -19,6 +19,7 @@ from pathlib import Path
 
 import requests
 
+from django.template.defaulttags import register
 from django.template.loader import get_template
 from django.utils import timezone
 from django.utils.html import escape
@@ -31,11 +32,15 @@ import settings
 from utils import (
     upstream_proxy,
 )
+
+from templates import get_template as get_template1
+
 from StaticAnalyzer.models import (
     StaticAnalyzerAndroid,
 )
 
 logger = logging.getLogger(__name__)
+
 try:
     import pdfkit
 except ImportError:
@@ -104,7 +109,8 @@ def pdf(checksum, dir, pdfpath):
             MD5=checksum)
         context = handle_pdf_android(android_static_db)
 
-        template = get_pdf_template_android(context, dir)
+        template = get_pdf_template_android()    # Django template
+        # template = get_pdf_template_android1() # jinja2 template
         # Do VT Scan only on binaries
         context['virus_total'] = None
         context['average_cvss'], context['security_score'] = score(context['code_analysis'])
@@ -149,6 +155,7 @@ def pdf(checksum, dir, pdfpath):
                 options['proxy'] = proxies['https']
 
             html = template.render(context)
+            # html = template.render(context).encode('utf-8')
             logger.info("Generating PDF Report to:%s"%pdfpath)
             pdfkit.from_string(html, pdfpath, options=options)
         except Exception as exp:
@@ -169,7 +176,17 @@ def handle_pdf_android(static_db):
         logger.info('Generating PDF report for android apk')
     return context
 
-def get_pdf_template_android(context, dir):
+@register.filter
+def key(d, key_name):
+    """To get dict element by key name in template."""
+    return d.get(key_name)
+
+def get_pdf_template_android():
+    template_path = 'pdf/android_report.html'
+    template = get_template(template_path)
+    return template
+
+def get_pdf_template_android1():
     # template_path = 'pdf/android_report.html'
     # if context['file_name'].lower().endswith('.zip'):
     #     logger.info('Generating PDF report for android zip')
@@ -193,6 +210,10 @@ def get_pdf_template_android(context, dir):
     # template = temp.get_template(temp_name)
     template = temp.from_string(template_str)
 
+    return template
+
+def get_pdf_template_android2():
+    template = get_template1('pdf/android_report.html')
     return template
 
 

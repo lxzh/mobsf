@@ -91,6 +91,12 @@
         </h3>
         </td>
       </tr>
+      {% if trackers|key:"trackers" %}
+        <tr>
+          <td class="no_border"><h3>Trackers Detection:</h3></td>
+          <td class="no_border"><h3><span {% if trackers.detected_trackers > 0 %} class="warning" {% endif %}>{{ trackers.detected_trackers }}/{{ trackers.total_trackers }}</span></h3></td>
+        </tr>
+      {% endif %}
       {% if virus_total and virus_total.items|length > 9 and 'request successfully queued' not in virus_total.verbose_msg %}
         <tr>
         <td class="no_border"><h3>VirusTotal Detection:</h3></td>
@@ -329,6 +335,49 @@
                           <tr>
                             <td>{{activity}}</td>
                             <td>
+                                   {% if intent_details|key:"schemes" %}
+                                      <strong>Schemes</strong>: 
+                                      {% for scheme in intent_details|key:"schemes" %}
+                                        {{scheme}},
+                                      {% endfor %}
+                                       </br>
+                                   {% endif %}
+                                   {% if intent_details|key:"hosts" %}
+                                      <strong>Hosts:</strong> {% for host in intent_details|key:"hosts" %}
+                                        {{host}},
+                                      {% endfor %} 
+                                      </br>
+                                   {% endif %}
+                                   {% if intent_details|key:"ports" %}
+                                      <strong>Ports:</strong> {% for port in intent_details|key:"ports" %}
+                                        {{port}},
+                                      {% endfor %} 
+                                      </br>
+                                   {% endif %}
+                                   {% if intent_details|key:"mime_types" %}
+                                      <strong>Mime Types:</strong> {% for mime in intent_details|key:"mime_types" %}
+                                        {{mime}},
+                                      {% endfor %} 
+                                      </br>
+                                   {% endif %}
+                                   {% if intent_details|key:"paths" %}
+                                      <strong>Paths:</strong> {% for path in intent_details|key:"paths" %}
+                                        {{path}},
+                                      {% endfor %} 
+                                      </br>
+                                   {% endif %}
+                                   {% if intent_details|key:"path_prefixs" %}
+                                      <strong>Path Prefixes:</strong> {% for prefix in intent_details|key:"path_prefixs" %}
+                                        {{prefix}},
+                                      {% endfor %} 
+                                      </br>
+                                   {% endif %}
+                                   {% if intent_details|key:"path_patterns" %}
+                                      <strong>Path Patterns:</strong> {% for pattern in intent_details|key:"path_patterns" %}
+                                        {{pattern}},
+                                      {% endfor %} 
+                                      </br>
+                                   {% endif %}
                               {% endfor %}
                             </td>
                           </tr>
@@ -387,6 +436,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+									  {% for item in manifest_analysis %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                        {{item|key:"title" | safe}}
+                        </td>
+                        <td>
+
+                          {% if item|key:"stat" == "high" %}
+                            <span class="danger">high</span>
+                          {% elif item|key:"stat" == "info" %}
+                            <span class="info">info</span>
+                          {% elif item|key:"stat" == "medium" %}
+                            <span class="warning">medium</span>
+                          {% endif %}
+                         
+                        </td>
+                        <td>
+                        {{item|key:"desc"}}
+                        </td>
+   
+                       </tr>
+                     {% endfor %}
 
 
 										</tbody>
@@ -407,15 +479,15 @@
                    {% for rule, details in code_analysis.items %}
                   <tr>
                   <td>{{ forloop.counter }}</td>
-                  <td width="25%">
+                  <td width="20%">
                     {% if details.metadata|key:"ref" %}
                     <a href="{{details.metadata.ref}}" target="_blank" rel="noopener"> {{ details.metadata.description }}</a>
                     {% else %}
                       {{ details.metadata.description }}
                     {% endif %}
                   </td>
-                  <td>
-                    {% if details.metadata.severity == "high" %}
+                  <td width="10%">
+                      {% if details.metadata.severity == "high" %}
                       <span class="danger">high</span>
                       {% elif details.metadata.severity == "good" %}
                       <span class="success">secure</span>
@@ -425,11 +497,10 @@
                       <span class="info">info</span>
                       {% endif %}
                   </td>
-                  <td>
-                      <strong>CVSS V2:</strong>
-                      {{ details.metadata.cvss }}
+                  <td width="20%">
+                      <strong>CVSS V2:</strong> {{ details.metadata.cvss }}
                       {% if details.metadata.cvss > 6 %}
-                         <span class="danger"> (high)</span>
+                        <span class="danger"> (high)</span>
                       {% elif details.metadata.cvss == 0 %}
                         <span class="info">(info)</span>
                       {% elif details.metadata.cvss >= 4 %}
@@ -437,11 +508,17 @@
                       {% elif details.metadata.cvss < 4 %}
                         <span class="success"> (low)</span>
                       {% endif %}
-                      {% if details.metadata.cwe %}</br> <strong>CWE: </strong>{{ details.metadata.cwe }}{% endif %}
-                      {% if details.metadata|key:"owasp-mobile" %}</br> <strong>OWASP Top 10: </strong>{{ details.metadata|key:"owasp-mobile" }}{% endif %}
-                      {% if details.metadata.masvs %}</br> <strong>OWASP MASVS: </strong>{{ details.metadata.masvs }}{% endif %}
+                      {% if details.metadata.cwe %}</br> 
+                      <strong>CWE: </strong> {{ details.metadata.cwe }}
+                      {% endif %}
+                      {% if details.metadata|key:"owasp-mobile" %}</br> 
+                      <strong>OWASP Top 10: </strong> {{ details.metadata|key:"owasp-mobile" }}
+                      {% endif %}
+                      {% if details.metadata.masvs %}</br> 
+                      <strong>OWASP MASVS: </strong>{{ details.metadata.masvs }}
+                      {% endif %}
                   </td>
-                 <td style="word-break:break-all;">
+                 <td  width="40%" style="word-break:break-all;">
                   {% for file_path in details.files %}
                     {{ file_path }}
                   <br/>
@@ -554,6 +631,36 @@
                   </tr>
                  </thead>
                  <tbody>
+                 {% for domain, details in domains.items %}
+                  <tr><td>{{domain}}</td><td> 
+
+                    {% if details|key:"bad" == "yes" %}
+                    <span class="danger">malware</span><br/>
+             
+                      <h5>URL: </h5> {{details|key:"domain_or_url"}}
+                      <h5>IP: </h5> <span class="danger">{{details|key:"ip"}}</span>
+                      <h5>Description: </h5> {{details|key:"desc"}}
+                   
+                  {% else %}
+                    <span class="success">good</span><br/>
+                  {% endif %}
+                  </td>
+                  <td>
+                    {% if details|key:"geolocation" %}
+                
+                      <h5>IP: </h5> {{details|key:"geolocation"|key:"ip"}}  <br/>
+                      <h5>Country: </h5> {{details|key:"geolocation"|key:"country_long"}} <br/>
+                      <h5>Region: </h5> {{details|key:"geolocation"|key:"region"}} <br/>
+                      <h5>City: </h5> {{details|key:"geolocation"|key:"city"}} <br/>
+                      <h5>Latitude: </h5> {{details|key:"geolocation"|key:"latitude"}} <br/>
+                      <h5>Longitude: </h5> {{details|key:"geolocation"|key:"longitude"}} <br/>
+                      <h5>View: </h5> <a target="_blank" href="http://maps.google.com/maps?q={{details|key:"geolocation"|key:"latitude"}},{{details|key:"geolocation"|key:"longitude"}}">Google Map</a>
+                    {% else %}
+                    No Geolocation information available.
+                    {% endif %}
+                  </td>
+                  </tr>
+                  {% endfor %}
                 </tbody>
             </table>
       {% endif %}
@@ -571,8 +678,12 @@
 									{% for urldict in urls %}
                     <tr>
                        <td style="word-break:break-all;">
+                       {% for u in urldict|key:"urls" %}
+                         {{ u }} </br>
+                       {% endfor %}
                         </td>
                        <td style="word-break:break-all;">
+                         {{urldict|key:"path"}}
                        </td>
                     </tr>
                   {% endfor %} 
@@ -624,9 +735,13 @@
 									{% for email_dict in emails %}
                     <tr>
                        <td style="word-break:break-all;">
+                       {% for em in email_dict|key:"emails" %}
+                         {{ em }} </br>
+                       {% endfor %}
                         </td>
 
                        <td style="word-break:break-all;">
+                         {{email_dict|key:"path"}}
                        </td>
                     </tr>
                   {% endfor %} 
@@ -635,6 +750,54 @@
       {% endif %}
 
   
+      {% if trackers|key:"trackers" %}
+      <h2><i class="fas fa-user-secret"></i> TRACKERS</h2>
+       <table class="basic">
+            <thead>
+                <tr>
+                    <th>TRACKER</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+          
+            <tbody>
+
+                {% for trk in trackers|key:"trackers" %}
+                <tr>
+                    {% for k, v in trk.items %}
+                    <td>
+                        {{k}}
+                    </td>
+                    <td>
+                        <a target="_blank" href="{{v}}" rel="noopener noreferrer">{{v}}</a>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+         {% endif %}
+    
+        {% if secrets %}
+        <h2><i class="fas fa-key"></i> HARDCODED SECRETS</h2>
+            <table class="basic">
+                    <thead>
+                    <tr>
+                      <th>POSSIBLE SECRETS</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                    {% for sec in secrets %}
+                      <tr>
+                        <td style="word-break:break-all;">
+                        {{ sec }}
+                          </td>
+                      </tr>
+                    {% endfor %} 
+                      </tbody>
+                      </table>
+        {% endif %}
+
     </article>
     <article>
     </br>
