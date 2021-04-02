@@ -3,8 +3,10 @@
 
 import logging
 import os
+from os.path import basename
 import re
 import shutil
+import datetime
 from pathlib import Path
 
 import MalwareAnalyzer.views.Trackers as Trackers
@@ -18,6 +20,7 @@ from utils import (
     file_size,
     is_dir_exists,
     is_file_exists,
+    md5,
 )
 from StaticAnalyzer.binary_analysis import elf_analysis
 from StaticAnalyzer.cert_analysis import (
@@ -57,26 +60,41 @@ from androguard.core.bytecodes import apk
 
 logger = logging.getLogger(__name__)
 
-def static_analyzer_local(typ, checksum, filename, rescan):
+def static_analyzer_local(filepath, outpath = None):
     """Do static analysis on an request and save to db."""
     try:
-        logger.info("static_analyzer typ:%s checksum:%s filename:%s rescan:%s", str(typ), checksum, filename, rescan)
+        filename = os.path.basename(filepath)
+        typ = os.path.splitext(filename)[1][1:].lower()
+        checksum = md5(filepath)
+        
+        logger.info("static_analyzer typ:%s checksum:%s filepath:%s", str(typ), checksum, filepath)
         # Input validation
         app_dic = {}
         match = re.match('^[0-9a-f]{32}$', checksum)
+        nowtime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+        workspace = checksum[0:8] + '_' + nowtime
         if (match
-                and filename.lower().endswith(('.apk', '.xapk', '.zip'))
+                and filename.endswith(('.apk', '.xapk', '.zip'))
                 and typ in ['zip', 'apk', 'xapk']):
             app_dic['dir'] = Path(settings.BASE_DIR)  # BASE DIR
-            app_dic['app_name'] = filename  # APP ORGINAL NAME
+            app_dic['app_name'] = filepath  # APP ORGINAL NAME
             app_dic['md5'] = checksum  # MD5
             # APP DIRECTORY
-            app_dic['app_dir'] = Path(settings.UPLD_DIR) / checksum
+            if (outpath == None or len(outpath) == 0):
+                app_dic['app_dir'] = Path(settings.UPLD_DIR) / workspace
+            else:
+                app_dic['app_dir'] = Path(outpath) / workspace
             app_dic['tools_dir'] = app_dic['dir'] / 'tools'
             app_dic['tools_dir'] = app_dic['tools_dir'].as_posix()
+
+            # Create work folder
+            if not os.path.exists(app_dic['app_dir']):
+                os.makedirs(app_dic['app_dir'])
+
             print("dir:%s app_dir:%s tools_dir:%s"%(app_dic['dir'], app_dic['app_dir'], app_dic['tools_dir']))
             logger.info('Starting Analysis on : %s', app_dic['app_name'])
             print(app_dic)
+
             if typ == 'xapk':
                 # Handle XAPK
                 # Base APK will have the MD5 of XAPK
@@ -85,9 +103,12 @@ def static_analyzer_local(typ, checksum, filename, rescan):
                     raise Exception('Invalid XAPK File')
                 typ = 'apk'
             if typ == 'apk':
-                app_dic['app_file'] = app_dic['md5'] + '.apk'  # NEW FILENAME
+                app_dic['app_file'] = filename  # NEW FILENAME
                 app_dic['app_path'] = (
                     app_dic['app_dir'] / app_dic['app_file']).as_posix()
+                # Copy file
+                shutil.copyfile(filepath, app_dic['app_path'])
+                
                 app_dic['app_dir'] = app_dic['app_dir'].as_posix() + '/'
                 # ANALYSIS BEGINS
                 app_dic['size'] = str(file_size(app_dic['app_path'])) + 'MB'  # FILE SIZE
@@ -113,7 +134,6 @@ def static_analyzer_local(typ, checksum, filename, rescan):
                 app_dic['parsed_xml'] = mani_xml
 
                 # get app_name
-                # TODO
                 app_dic['real_name'] = get_app_name(
                     app_dic['app_path'],
                     app_dic['app_dir'],
@@ -236,8 +256,9 @@ def static_analyzer_local(typ, checksum, filename, rescan):
                         app_dic['app_path'],
                         app_dic['md5'])
 
+                rst_name = os.path.join(app_dic['app_dir'], checksum[0:8])
                 write_to_file(context, app_dic['app_dir'])
-                write_to_html_and_pdf(context, checksum, app_dic['dir'], app_dic['app_dir'])
+                write_to_html_and_pdf(context, app_dic['dir'], rst_name)
                 return context
             else:
                 err = ('Only APK Source code supported now!')
@@ -253,20 +274,18 @@ def static_analyzer_local(typ, checksum, filename, rescan):
         logger.error(msg)
 
 
-def write_to_file(context, app_dir):
+def write_to_file(context, rst_name):
     if (context == None):
         return
-    checksum = context['md5']
-    outname = checksum + '.json'
-    outfile = os.path.join(app_dir, outname)
-    out = open(outfile, mode = 'w', encoding = 'utf-8-sig')
+    outname = rst_name + '.json'
+    out = open(outname, mode = 'w', encoding = 'utf-8-sig')
     out.write(str(context))
     out.close
 
-def write_to_html_and_pdf(context, checksum, dir, app_dir):
-    htmlname = os.path.join(app_dir, checksum + '.html')
-    pdfname = os.path.join(app_dir, checksum + '.pdf')
-    html_and_pdf(context, checksum, dir, htmlname, pdfname)
+def write_to_html_and_pdf(context, rst_name):
+    htmlname = rst_name + '.html'
+    pdfname = rst_name + '.pdf'
+    html_and_pdf(context, htmlname, pdfname)
 
 
 def is_android_source(app_dir):

@@ -103,7 +103,7 @@ def unzip(app_path, ext_path):
                 logger.exception('Unzipping Error')
 
 
-def html_and_pdf(context, checksum, dir, htmlpath, pdfpath):
+def html_and_pdf(context, htmlpath, pdfpath):
     try:
         # android_static_db = StaticAnalyzerAndroid.objects.filter(
         #     MD5=checksum)
@@ -114,7 +114,7 @@ def html_and_pdf(context, checksum, dir, htmlpath, pdfpath):
         # Do VT Scan only on binaries
         context['virus_total'] = None
         context['average_cvss'], context['security_score'] = score(context['code_analysis'])
-
+        checksum = context['md5']
         ext = os.path.splitext(context['file_name'].lower())[1]
         if settings.VT_ENABLED and ext != '.zip':
             app_bin = os.path.join(
