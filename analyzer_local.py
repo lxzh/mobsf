@@ -2,7 +2,6 @@
 import os
 import sys
 
-import settings
 import django
 
 def main():
@@ -12,8 +11,6 @@ def main():
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
     django.setup()
-    global TEMPLATES
-    TEMPLATES = settings.TEMPLATES
 
     print(sys.argv)
     if (argc >= 2):

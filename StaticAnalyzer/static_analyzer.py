@@ -257,8 +257,8 @@ def static_analyzer_local(filepath, outpath = None):
                         app_dic['md5'])
 
                 rst_name = os.path.join(app_dic['app_dir'], checksum[0:8])
-                write_to_file(context, app_dic['app_dir'])
-                write_to_html_and_pdf(context, app_dic['dir'], rst_name)
+                write_to_file(context, app_dic['app_dir'], rst_name)
+                write_to_html_and_pdf(context, rst_name)
                 return context
             else:
                 err = ('Only APK Source code supported now!')
@@ -274,11 +274,12 @@ def static_analyzer_local(filepath, outpath = None):
         logger.error(msg)
 
 
-def write_to_file(context, rst_name):
+def write_to_file(context, dir, rst_name):
     if (context == None):
         return
-    outname = rst_name + '.json'
-    out = open(outname, mode = 'w', encoding = 'utf-8-sig')
+    jsonname = os.path.join(dir, rst_name + '.json')
+    logger.info("Generating json Report to:%s"%jsonname)
+    out = open(jsonname, mode = 'w', encoding = 'utf-8-sig')
     out.write(str(context))
     out.close
 
