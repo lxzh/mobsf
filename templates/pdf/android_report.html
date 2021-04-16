@@ -439,9 +439,8 @@
                       {% endif %}
                   </td>
                  <td width="60%" style="word-break:break-all;">
-                  {% for file_path in details.files %}
-                    {{ file_path }}
-                  <br/>
+                  {% for file_path, lines in details.files.items %}
+                    {{ file_path }} ({{lines}})<br/>
                   {% endfor %}
                   </td>
                 </tr>    
