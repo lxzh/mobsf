@@ -30,26 +30,6 @@ def scan(rule, extensions, paths, ignore_paths=None):
     return {}
 
 
-def niap_scan(rule, extensions, paths, apath, ignore_paths=None):
-    """NIAP scan."""
-    try:
-        if not apath:
-            apath = ''
-        options = {
-            'choice_rules': rule,
-            'alternative_path': apath,
-            'choice_extensions': extensions,
-            'ignore_paths': ignore_paths,
-            'show_progress': False}
-        scanner = Scanner(options, paths)
-        res = scanner.scan()
-        if res:
-            return res['choice_matcher']
-    except Exception:
-        logger.exception('NIAP scan')
-    return {}
-
-
 def format_findings(findings, root):
     """Format findings."""
     for details in findings.values():

@@ -9,11 +9,6 @@ import shutil
 import datetime
 from pathlib import Path
 
-import MalwareAnalyzer.views.Trackers as Trackers
-import MalwareAnalyzer.views.VirusTotal as VirusTotal
-from MalwareAnalyzer.views.apkid import apkid_analysis
-from MalwareAnalyzer.views.MalwareDomainCheck import MalwareDomainCheck
-
 import settings
 
 from utils import (
@@ -22,7 +17,6 @@ from utils import (
     is_file_exists,
     md5,
 )
-from StaticAnalyzer.binary_analysis import elf_analysis
 from StaticAnalyzer.cert_analysis import (
     cert_info,
     get_hardcoded_cert_keystore,
@@ -34,10 +28,8 @@ from StaticAnalyzer.converter import (
 )
 from StaticAnalyzer.db_interaction import (
     get_context_from_analysis,
-    save_or_update,
 )
 from StaticAnalyzer.icon_analysis import (
-    find_icon_path_zip,
     get_icon,
 )
 from StaticAnalyzer.manifest_analysis import (
@@ -45,10 +37,8 @@ from StaticAnalyzer.manifest_analysis import (
     manifest_analysis,
     manifest_data,
 )
-from strings import strings_from_apk
 from xapk import handle_xapk
 from StaticAnalyzer.shared_func import (
-    firebase_analysis,
     hash_gen,
     score,
     unzip,
@@ -163,24 +153,15 @@ def static_analyzer_local(filepath, outpath = None):
                                     + app_dic['md5']
                                     + '&type=apk&bin=1')
                 man_data_dic = manifest_data(app_dic['parsed_xml'])
-                # 关闭从 play store 查找应用信息
-                # app_dic['playstore'] = get_app_details(
-                #     man_data_dic['packagename'])
                 man_an_dic = manifest_analysis(
                     app_dic['parsed_xml'],
                     man_data_dic,
                     '',
                     app_dic['app_dir'],
                 )
-                elf_dict = elf_analysis(app_dic['app_dir'])
                 cert_dic = cert_info(
                     app_dic['app_dir'],
                     app_dic['app_file'])
-                apkid_results = apkid_analysis(app_dic[
-                    'app_dir'], app_dic['app_path'], app_dic['app_name'])
-                tracker = Trackers.Trackers(
-                    app_dic['app_dir'], app_dic['tools_dir'])
-                tracker_res = tracker.get_trackers()
 
                 apk_2_java(app_dic['app_path'], app_dic['app_dir'],
                             app_dic['tools_dir'])
@@ -192,46 +173,9 @@ def static_analyzer_local(filepath, outpath = None):
                     'apk',
                     app_dic['manifest_file'])
 
-                # Get the strings from android resource and shared objects
-                string_res = strings_from_apk(
-                    app_dic['app_file'],
-                    app_dic['app_dir'],
-                    elf_dict['elf_strings'])
-                if string_res:
-                    app_dic['strings'] = string_res['strings']
-                    app_dic['secrets'] = string_res['secrets']
-                    code_an_dic['urls_list'].extend(
-                        string_res['urls_list'])
-                    code_an_dic['urls'].extend(string_res['url_nf'])
-                    code_an_dic['emails'].extend(string_res['emails_nf'])
-                else:
-                    app_dic['strings'] = []
-                    app_dic['secrets'] = []
-                # Firebase DB Check
-                code_an_dic['firebase'] = firebase_analysis(
-                    list(set(code_an_dic['urls_list'])))
-                # Domain Extraction and Malware Check
-                logger.info('Performing Malware Check on extracted Domains')
-                code_an_dic['domains'] = MalwareDomainCheck().scan(
-                    list(set(code_an_dic['urls_list'])))
                 # Copy App icon
                 copy_icon(app_dic['md5'], app_dic['icon_path'])
                 app_dic['zipped'] = 'apk'
-
-                print("Before save_or_update")
-                # print(man_data_dic)
-                # print(man_an_dic)
-                # save_or_update(
-                #         'save',
-                #         app_dic,
-                #         man_data_dic,
-                #         man_an_dic,
-                #         code_an_dic,
-                #         cert_dic,
-                #         elf_dict['elf_analysis'],
-                #         apkid_results,
-                #         tracker_res,
-                #     )
 
                 context = get_context_from_analysis(
                     app_dic,
@@ -239,22 +183,10 @@ def static_analyzer_local(filepath, outpath = None):
                     man_an_dic,
                     code_an_dic,
                     cert_dic,
-                    elf_dict['elf_analysis'],
-                    apkid_results,
-                    tracker_res,
                 )
 
                 context['average_cvss'], context[
                     'security_score'] = score(context['code_analysis'])
-                context['dynamic_analysis_done'] = is_file_exists(
-                    os.path.join(app_dic['app_dir'], 'logcat.txt'))
-
-                context['virus_total'] = None
-                if settings.VT_ENABLED:
-                    vt = VirusTotal.VirusTotal()
-                    context['virus_total'] = vt.get_result(
-                        app_dic['app_path'],
-                        app_dic['md5'])
 
                 rst_name = os.path.join(app_dic['app_dir'], checksum[0:8])
                 write_to_file(context, app_dic['app_dir'], rst_name)

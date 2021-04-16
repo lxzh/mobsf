@@ -8,6 +8,7 @@ import shutil
 
 logger = logging.getLogger(__name__)
 
+GEETEST_VERSION = '0.5.0'
 VERSION = '3.4.0'
 BANNER = """
   __  __       _    ____  _____         _____ _  _   
@@ -116,4 +117,4 @@ def get_mobsf_home(use_home, base_dir):
 
 
 def get_mobsf_version():
-    return BANNER, VERSION, f'v{VERSION} Beta'
+    return BANNER, GEETEST_VERSION, VERSION, f'v{GEETEST_VERSION} (MobSF v{VERSION} Beta)', f'v{VERSION} Beta'

@@ -226,30 +226,3 @@ class Checksec:
 
     def strings(self):
         return self.elf.strings
-
-
-def elf_analysis(app_dir: str) -> dict:
-    """Perform elf analysis on shared object."""
-    try:
-        strings = []
-        elf_list = []
-        logger.info('Binary Analysis Started')
-        libs = Path(app_dir) / 'lib'
-        elf = {'elf_analysis': elf_list, 'elf_strings': strings}
-        if not libs.is_dir():
-            return elf
-        for sofile in libs.rglob('*.so'):
-            so_rel = (
-                f'{sofile.parents[1].name}/'
-                f'{sofile.parents[0].name}/'
-                f'{sofile.name}')
-            logger.info('Analyzing %s', so_rel)
-            chk = Checksec(sofile, so_rel)
-            elf_find = chk.checksec()
-            if elf_find:
-                elf_list.append(elf_find)
-                strings.append({so_rel: chk.strings()})
-        return {'elf_analysis': elf_list, 'elf_strings': strings}
-    except Exception:
-        logger.exception('Performing Binary Analysis')
-        return elf

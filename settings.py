@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #       MOBSF CONFIGURATION
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-BANNER, VERSION, MOBSF_VER = get_mobsf_version()
+BANNER, GEETEST_VERSION, VERSION, GEESF_VER, MOBSF_VER = get_mobsf_version()
 USE_HOME = True
 # True : All Uploads/Downloads will be stored in user's home directory
 # False : All Uploads/Downloads will be stored under MobSF root directory
@@ -103,7 +103,6 @@ API_ONLY = os.getenv('MOBSF_API_ONLY', '0')
 # -----External URLS--------------------------
 MALWARE_DB_URL = 'https://www.malwaredomainlist.com/mdlcsv.php'
 MALTRAIL_DB_URL = ('https://lxzh.oss-cn-hangzhou.aliyuncs.com/mobsf/maltrail-malware-domains.txt')
-VIRUS_TOTAL_BASE_URL = 'https://www.virustotal.com/vtapi/v2/file/'
 # https://github.com/exodus-privacy/exodus
 # εxodus 是 Android 应用隐私审计平台。它可以检测到可能危及用户隐私的行为，如广告、跟踪、分析……
 # 
@@ -378,27 +377,7 @@ else:
     UPSTREAM_PROXY_PASSWORD = ''
     # ==============================================
 
-    # --------------------------
-    # MALWARE ANALYZER SETTINGS
-    # --------------------------
-    DOMAIN_MALWARE_SCAN = True
-    APKID_ENABLED = True
-    # ==============================================
-
     # ========DISABLED BY DEFAULT COMPONENTS=========
 
     # Get AppMonsta API from https://appmonsta.com/dashboard/get_api_key/
     APPMONSTA_API = ''
-    # ----------VirusTotal--------------------------
-    VT_ENABLED = False
-    VT_API_KEY = ''
-    VT_UPLOAD = False
-    # Before setting VT_ENABLED to True,
-    # Make sure VT_API_KEY is set to your VirusTotal API key
-    # register at: https://www.virustotal.com/#/join-us
-    # You can get your API KEY from:
-    # https://www.virustotal.com/en/user/<username>/apikey/
-    # Files will be uploaded to VirusTotal
-    # if VT_UPLOAD is set to True.
-    # ==============================================
-    # ^CONFIG-END^: Do not edit this line

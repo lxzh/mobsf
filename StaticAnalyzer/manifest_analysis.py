@@ -20,7 +20,7 @@ from StaticAnalyzer.network_security import (
 )
 
 # pylint: disable=E0401
-from StaticAnalyzer.dvm_permissions import DVM_PERMISSIONS
+from StaticAnalyzer.dvm_permissions_cn import DVM_PERMISSIONS
 
 logger = logging.getLogger(__name__)
 

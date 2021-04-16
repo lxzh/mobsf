@@ -177,26 +177,6 @@ def run_process(args):
         return ''
 
 
-def print_n_send_error_response(request,
-                                msg,
-                                api=False,
-                                exp='Description'):
-    """Print and log errors."""
-    logger.error(msg)
-    if api:
-        api_response = {'error': msg}
-        return api_response
-    else:
-        context = {
-            'title': 'Error',
-            'exp': exp,
-            'doc': msg,
-            'version': settings.MOBSF_VER,
-        }
-        template = 'general/error.html'
-        return render(request, template, context, status=500)
-
-
 def filename_from_path(path):
     head, tail = ntpath.split(path)
     return tail or ntpath.basename(head)
