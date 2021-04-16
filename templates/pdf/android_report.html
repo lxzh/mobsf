@@ -376,7 +376,7 @@
             </td>
             <td width="60%">
               {% for file_path, lines in details.files.items %}
-                  {{ file_path }} ({{lines}})<br/>
+                  {{ file_path }} {{lines}}<br/>
               {% endfor %}
             </td>
             </tr>    
@@ -440,7 +440,7 @@
                   </td>
                  <td width="60%" style="word-break:break-all;">
                   {% for file_path, lines in details.files.items %}
-                    {{ file_path }} ({{lines}})<br/>
+                    {{ file_path }} {{lines}}<br/>
                   {% endfor %}
                   </td>
                 </tr>    
