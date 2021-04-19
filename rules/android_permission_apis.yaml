@@ -1,0 +1,1070 @@
+- id: ACCEPT_HANDOVER
+  name:  android.permission.ACCEPT_HANDOVER
+  pattern:  
+  - TelecomManager
+  - - acceptHandover
+- id: ACCESS_BACKGROUND_LOCATION
+  name:  android.permission.ACCESS_BACKGROUND_LOCATION
+  pattern:  
+    - TelephonyManager
+    - - requestNetworkScan
+- id: ACCESS_CHECKIN_PROPERTIES
+  name:  android.permission.ACCESS_CHECKIN_PROPERTIES
+- id: ACCESS_COARSE_LOCATION
+  name:  android.permission.ACCESS_COARSE_LOCATION
+  pattern: 
+    - TelephonyManager
+    - - getNeighboringCellInfo
+      - getAvailableNetworks
+      - getServiceState
+    - LocationManager
+    - - getAllProviders
+      - getProvider
+      - getProviders
+      - getBestProvider
+      - requestLocationUpdates
+      - requestSingleUpdate
+      - removeUpdates
+      - addProximityAlert
+      - addGeofence
+      - removeProximityAlert
+      - removeGeofence
+      - getLastLocation
+      - getLastKnownLocation
+    - IdentityChangedListener
+    - - onIdentityChanged
+    - BluetoothLeScanner
+    - - startScan
+- id: ACCESS_FINE_LOCATION
+  name:  android.permission.ACCESS_FINE_LOCATION
+  pattern: 
+    - TelephonyManager
+    - - getCellLocation
+      - getAllCellInfo
+      - requestCellInfoUpdate
+      - requestNetworkScan
+    - LocationManager
+    - - requestLocationUpdates
+      - requestSingleUpdate
+      - injectLocation
+      - removeUpdates
+      - addProximityAlert
+      - addGeofence
+      - removeProximityAlert
+      - removeGeofence
+      - removeAllGeofences
+      - getLastLocation
+      - getLastKnownLocation
+      - addGpsStatusListener
+      - registerGnssStatusCallback
+      - addNmeaListener
+      - registerGnssMeasurementsCallback
+      - injectGnssMeasurementCorrections
+      - getGnssCapabilities
+      - registerGnssNavigationMessageCallback
+      - getGpsStatus
+    - BluetoothLeScanner
+    - - startScan
+    - WifiAwareSession
+    - - publish
+      - subscribe
+    - WifiManager
+    - - getConfiguredNetworks
+      - getPrivilegedConfiguredNetworks
+      - startLocalOnlyHotspot
+      - watchLocalOnlyHotspot
+    - WifiAwareManager
+    - - attach
+    - WifiRttManager
+    - - startRanging
+- id: ACCESS_LOCATION_EXTRA_COMMANDS
+  name:  android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+- id: ACCESS_MEDIA_LOCATION
+  name:  android.permission.ACCESS_MEDIA_LOCATION
+- id: ACCESS_NETWORK_STATE
+  name:  android.permission.ACCESS_NETWORK_STATE
+  pattern: 
+    - TelephonyManager
+    - - isDataEnabled
+      - isDataRoamingEnabled
+    - ConnectivityManager
+    - - getNetworkPreference
+      - getActiveNetworkInfo
+      - getActiveNetwork
+      - getNetworkInfo
+      - getAllNetworkInfo
+      - getNetworkForType
+      - getAllNetworks
+      - getActiveLinkProperties
+      - getLinkProperties
+      - getNetworkCapabilities
+      - getTetherableIfaces
+      - getTetheredIfaces
+      - getTetheringErroredIfaces
+      - getTetherableUsbRegexs
+      - getTetherableWifiRegexs
+      - getTetherableBluetoothRegexs
+      - getLastTetherError
+      - isNetworkSupported
+      - isActiveNetworkMetered
+      - registerNetworkCallback
+      - registerDefaultNetworkCallback
+      - getMultipathPreference
+- id: ACCESS_NOTIFICATION_POLICY
+  name:  android.permission.ACCESS_NOTIFICATION_POLICY
+  pattern:
+    - ConditionProviderService
+- id: ACCESS_WIFI_STATE
+  name:  android.permission.ACCESS_WIFI_STATE
+  pattern: 
+    - WifiManager
+    - - getConfiguredNetworks
+      - getPrivilegedConfiguredNetworks
+      - is5GHzBandSupported
+      - isP2pSupported
+      - isDeviceToApRttSupported
+      - isPreferredNetworkOffloadSupported
+      - isTdlsSupported
+      - isEnhancedPowerReportingSupported
+      - getConnectionInfo
+      - getScanResults
+      - isScanAlwaysAvailable
+      - getDhcpInfo
+      - getWifiState
+      - startLocalOnlyHotspot
+      - getWifiApState
+      - isWifiApEnabled
+      - getWifiApConfiguration
+    - WifiRttManager
+    - - startRanging
+    - android.net.sip.SipAudioCall
+    - - startAudio
+- id: ACCOUNT_MANAGER
+  name:  android.permission.ACCOUNT_MANAGER
+  pattern:
+    - AbstractAccountAuthenticator
+- id: ACTIVITY_RECOGNITION
+  name:  android.permission.ACTIVITY_RECOGNITION
+- id: ADD_VOICEMAIL
+  name:  com.android.voicemail.permission.ADD_VOICEMAIL
+  pattern:
+    - VoicemailContract
+- id: ANSWER_PHONE_CALLS
+  name:  android.permission.ANSWER_PHONE_CALLS
+  pattern:
+    - TelecomManager
+    - - endCall
+      - acceptRingingCall
+- id: BATTERY_STATS
+  name:  android.permission.BATTERY_STATS
+  pattern:
+    - SystemHealthManager
+    - - takeUidSnapshot
+    - android.intent.action.BATTERY_LEVEL_CHANGED
+- id: BIND_ACCESSIBILITY_SERVICE
+  name:  android.permission.BIND_ACCESSIBILITY_SERVICE
+  pattern:
+    - AccessibilityService
+- id: BIND_APPWIDGET
+  name:  android.permission.BIND_APPWIDGET
+  pattern:
+    - AppWidgetManager
+    - - bindAppWidgetId
+      - bindAppWidgetIdIfAllowed
+- id: BIND_AUTOFILL_SERVICE
+  name:  android.permission.BIND_AUTOFILL_SERVICE
+- id: BIND_CALL_REDIRECTION_SERVICE
+  name:  android.permission.BIND_CALL_REDIRECTION_SERVICE
+- id: BIND_CARRIER_MESSAGING_CLIENT_SERVICE
+  name:  android.permission.BIND_CARRIER_MESSAGING_CLIENT_SERVICE
+- id: BIND_CARRIER_MESSAGING_SERVICE
+  name:  android.permission.BIND_CARRIER_MESSAGING_SERVICE
+- id: BIND_CARRIER_SERVICES
+  name:  android.permission.BIND_CARRIER_SERVICES
+- id: BIND_CHOOSER_TARGET_SERVICE
+  name:  android.permission.BIND_CHOOSER_TARGET_SERVICE
+- id: BIND_CONDITION_PROVIDER_SERVICE
+  name:  android.permission.BIND_CONDITION_PROVIDER_SERVICE
+  pattern:
+    - ConditionProviderService
+- id: BIND_CONTROLS
+  name:  android.permission.BIND_CONTROLS
+- id: BIND_DEVICE_ADMIN
+  name:  android.permission.BIND_DEVICE_ADMIN
+- id: BIND_DREAM_SERVICE
+  name:  android.permission.BIND_DREAM_SERVICE
+- id: BIND_INCALL_SERVICE
+  name:  android.permission.BIND_INCALL_SERVICE
+  pattern:
+    - InCallService
+- id: BIND_INPUT_METHOD
+  name:  android.permission.BIND_INPUT_METHOD
+- id: BIND_MIDI_DEVICE_SERVICE
+  name:  android.permission.BIND_MIDI_DEVICE_SERVICE
+- id: BIND_NFC_SERVICE
+  name:  android.permission.BIND_NFC_SERVICE
+- id: BIND_NOTIFICATION_LISTENER_SERVICE
+  name:  android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+- id: BIND_PRINT_SERVICE
+  name:  android.permission.BIND_PRINT_SERVICE
+- id: BIND_QUICK_ACCESS_WALLET_SERVICE
+  name:  android.permission.BIND_QUICK_ACCESS_WALLET_SERVICE
+- id: BIND_QUICK_SETTINGS_TILE
+  name:  android.permission.BIND_QUICK_SETTINGS_TILE
+- id: BIND_REMOTEVIEWS
+  name:  android.permission.BIND_REMOTEVIEWS
+- id: BIND_SCREENING_SERVICE
+  name:  android.permission.BIND_SCREENING_SERVICE
+- id: BIND_TELECOM_CONNECTION_SERVICE
+  name:  android.permission.BIND_TELECOM_CONNECTION_SERVICE
+- id: BIND_TEXT_SERVICE
+  name:  android.permission.BIND_TEXT_SERVICE
+- id: BIND_TV_INPUT
+  name:  android.permission.BIND_TV_INPUT
+- id: BIND_VISUAL_VOICEMAIL_SERVICE
+  name:  android.permission.BIND_VISUAL_VOICEMAIL_SERVICE
+- id: BIND_VOICE_INTERACTION
+  name:  android.permission.BIND_VOICE_INTERACTION
+- id: BIND_VPN_SERVICE
+  name:  android.permission.BIND_VPN_SERVICE
+  pattern:
+    - ConnectivityManager
+    - - setAlwaysOnVpnPackageForUser
+    - VpnService
+    - - SERVICE_INTERFACE
+- id: BIND_VR_LISTENER_SERVICE
+  name:  android.permission.BIND_VR_LISTENER_SERVICE
+- id: BIND_WALLPAPER
+  name:  android.permission.BIND_WALLPAPER
+- id: BLUETOOTH
+  name:  android.permission.BLUETOOTH
+- id: BLUETOOTH_ADMIN
+  name:  android.permission.BLUETOOTH_ADMIN
+  pattern: 
+    - BluetoothLeScanner
+    - - startScan
+      - startScanFromSource
+      - stopScan
+- id: BLUETOOTH_PRIVILEGED
+  name:  android.permission.BLUETOOTH_PRIVILEGED
+- id: BODY_SENSORS
+  name:  android.permission.BODY_SENSORS
+- id: BROADCAST_PACKAGE_REMOVED
+  name:  android.permission.BROADCAST_PACKAGE_REMOVED
+- id: BROADCAST_SMS
+  name:  android.permission.BROADCAST_SMS
+  pattern:
+    - android.provider.Telephony.SMS_DELIVER
+- id: BROADCAST_STICKY
+  name:  android.permission.BROADCAST_STICKY
+  pattern:
+    - Context
+    - - sendStickyBroadcast
+      - sendStickyOrderedBroadcast
+      - removeStickyBroadcast
+      - sendStickyBroadcastAsUser
+      - sendStickyOrderedBroadcastAsUser
+      - removeStickyBroadcastAsUser
+- id: BROADCAST_WAP_PUSH
+  name:  android.permission.BROADCAST_WAP_PUSH
+  pattern:
+    - android.provider.Telephony.WAP_PUSH_DELIVER
+- id: CALL_COMPANION_APP
+  name:  android.permission.CALL_COMPANION_APP
+- id: CALL_PHONE
+  name:  android.permission.CALL_PHONE
+  pattern: 
+    - TelecomManager
+    - - placeCall
+    - TelephonyManager
+    - - call
+      - endCall
+      - sendUssdRequest
+    - android.intent.action.CALL
+- id: CALL_PRIVILEGED
+  name:  android.permission.CALL_PRIVILEGED
+  pattern:
+    - TelephonyManager
+    - - getCompleteVoiceMailNumber
+- id: CAMERA
+  name:  android.permission.CAMERA
+  pattern:
+    - android.hardware.Camera
+    - android.hardware.camera2.CameraManager
+    - android.hardware.camera2.CameraDevice
+- id: CAPTURE_AUDIO_OUTPUT
+  name:  android.permission.CAPTURE_AUDIO_OUTPUT
+  pattern:
+    - MediaRecorder
+- id: CHANGE_COMPONENT_ENABLED_STATE
+  name:  android.permission.CHANGE_COMPONENT_ENABLED_STATE
+  pattern:
+    - PackageManager
+    - - setComponentEnabledSetting
+      - setSyntheticAppDetailsActivityEnabled
+- id: CHANGE_CONFIGURATION
+  name:  android.permission.CHANGE_CONFIGURATION
+  pattern:
+    - ActivityManager
+    - - scheduleApplicationInfoChanged
+- id: CHANGE_NETWORK_STATE
+  name:  android.permission.CHANGE_NETWORK_STATE
+  pattern:
+    - ConnectivityManager
+    - - startUsingNetworkFeature
+      - stopUsingNetworkFeature
+      - requestRouteToHost
+      - requestRouteToHostAddress
+      - untether
+      - requestNetwork
+- id: CHANGE_WIFI_MULTICAST_STATE
+  name:  android.permission.CHANGE_WIFI_MULTICAST_STATE
+- id: CHANGE_WIFI_STATE
+  name:  android.permission.CHANGE_WIFI_STATE
+  pattern: 
+    - WifiManager
+    - - addNetwork
+      - updateNetwork
+      - addNetworkSuggestions
+      - removeNetworkSuggestions
+      - removeNetwork
+      - enableNetwork
+      - disableNetwork
+      - disconnect
+      - reconnect
+      - reassociate
+      - startScan
+      - saveConfiguration
+      - setWifiEnabled
+      - setWifiApConfiguration
+    - WifiRttManager
+    - - startRanging
+- id: CLEAR_APP_CACHE
+  name:  android.permission.CLEAR_APP_CACHE
+- id: CONTROL_LOCATION_UPDATES
+  name:  android.permission.CONTROL_LOCATION_UPDATES
+  pattern: 
+    - TelephonyManager
+    - - enableLocationUpdates
+      - disableLocationUpdates
+- id: DELETE_CACHE_FILES
+  name:  android.permission.DELETE_CACHE_FILES
+  pattern:
+    - PackageManager
+    - - deleteApplicationCacheFiles
+      - deleteApplicationCacheFilesAsUser
+- id: DELETE_PACKAGES
+  name:  android.permission.DELETE_PACKAGES
+  patter:
+    - PackageInstaller
+    - - uninstall
+- id: DIAGNOSTIC
+  name:  android.permission.DIAGNOSTIC
+- id: DISABLE_KEYGUARD
+  name:  android.permission.DISABLE_KEYGUARD
+  pattern:
+    - - KeyguardManager
+      - disableKeyguard
+      - reenableKeyguard
+      - exitKeyguardSecurely
+- id: DUMP
+  name:  android.permission.DUMP
+  pattern:
+    - TelecomManager
+    - - dumpAnalytics
+    - ActivityManager
+    - - dumpPackageState
+- id: EXPAND_STATUS_BAR
+  name:  android.permission.EXPAND_STATUS_BAR
+  pattern:
+    - ConnectivityManager
+    - - reportInetCondition
+- id: FACTORY_TEST
+  name:  android.permission.FACTORY_TEST
+- id: FOREGROUND_SERVICE
+  name:  android.permission.FOREGROUND_SERVICE
+  pattern:
+    - Service
+    - - startForeground
+- id: GET_ACCOUNTS
+  name:  android.permission.GET_ACCOUNTS
+  pattern:
+    - android:accounts:key_legacy_visible
+    - AccountManager
+    - - getAccountsByType
+      - hasFeatures
+      - getAccountsByTypeAndFeatures
+- id: GET_ACCOUNTS_PRIVILEGED
+  name:  android.permission.GET_ACCOUNTS_PRIVILEGED
+  pattern:
+    - android:accounts:key_legacy_visible
+- id: GET_PACKAGE_SIZE
+  name:  android.permission.GET_PACKAGE_SIZE
+  pattern:
+    - PackageManager
+    - - getPackageSizeInfoAsUser
+- id: GET_TASKS
+  name:  android.permission.GET_TASKS
+- id: GLOBAL_SEARCH
+  name:  android.permission.GLOBAL_SEARCH
+- id: INSTALL_LOCATION_PROVIDER
+  name:  android.permission.INSTALL_LOCATION_PROVIDER
+- id: INSTALL_PACKAGES
+  name:  android.permission.INSTALL_PACKAGES
+  pattern:
+    - PackageManager
+    - - installExistingPackageAsUser
+      - setUpdateAvailable
+- id: INSTALL_SHORTCUT
+  name:  com.android.launcher.permission.INSTALL_SHORTCUT
+- id: INSTANT_APP_FOREGROUND_SERVICE
+  name:  android.permission.INSTANT_APP_FOREGROUND_SERVICE
+- id: INTERACT_ACROSS_PROFILES
+  name:  android.permission.INTERACT_ACROSS_PROFILES
+- id: INTERNET
+  name:  android.permission.INTERNET
+  pattern:
+    - android.net.sip.SipAudioCall
+    - android.net.sip.SipManager
+    - android.net.rtp.AudioStream
+    - MediaExtractor
+    - - setDataSource
+    - HttpConnection
+    - HttpsConnection
+    - android.net.rtp.RtpStream
+    - DownloadManager
+    - WebView
+    - MediaPlayer
+    - MediaPlayer2
+- id: KILL_BACKGROUND_PROCESSES
+  name:  android.permission.KILL_BACKGROUND_PROCESSES
+  pattern:
+    - ActivityManager
+    - - killBackgroundProcesses
+- id: LOADER_USAGE_STATS
+  name:  android.permission.LOADER_USAGE_STATS
+- id: LOCATION_HARDWARE
+  name:  android.permission.LOCATION_HARDWARE
+  pattern:
+    - LocationManager
+    - - injectLocation
+      - getGnssBatchSize
+      - registerGnssBatchedLocationCallback
+      - flushGnssBatch
+      - unregisterGnssBatchedLocationCallback
+      - setExtraLocationControllerPackage
+      - setLocationControllerExtraPackage
+      - setLocationControllerExtraPackageEnabled
+      - setExtraLocationControllerPackageEnabled
+    - WifiRttManager
+    - - startRanging
+- id: MANAGE_DOCUMENTS
+  name:  android.permission.MANAGE_DOCUMENTS
+  pattern:
+    - DocumentsProvider
+    - - attachInfo
+      - callUnchecked
+    - ContentProvider.Transport
+      - openTypedAssetFile
+    - android.intent.extra.ORIGINATING_UID
+- id: MANAGE_EXTERNAL_STORAGE
+  name:  android.permission.MANAGE_EXTERNAL_STORAGE
+- id: MANAGE_OWN_CALLS
+  name:  android.permission.MANAGE_OWN_CALLS
+  pattern: 
+    - TelecomManager
+    - - acceptHandover
+      - placeCall
+- id: MASTER_CLEAR
+  name:  android.permission.MASTER_CLEAR
+  pattern:
+    - android.intent.action.FACTORY_RESET
+- id: MEDIA_CONTENT_CONTROL
+  name:  android.permission.MEDIA_CONTENT_CONTROL
+- id: MODIFY_AUDIO_SETTINGS
+  name:  android.permission.MODIFY_AUDIO_SETTINGS
+  pattern:
+    - android.media.audiofx.Visualizer
+    - android.net.sip.SipAudioCall
+    - - setSpeakerMode
+- id: MODIFY_PHONE_STATE
+  name:  android.permission.MODIFY_PHONE_STATE
+  pattern: 
+    - TelecomManager
+    - - acceptRingingCall
+      - silenceRinger
+      - handleMmi
+      - getAdnUriForPhoneAccount
+      - cancelMissedCallsNotification
+      - enablePhoneAccount
+      - isInEmergencyCall
+    - TelephonyManager
+    - - refreshUiccProfile
+      - switchSlots
+      - resetCarrierKeysForImsiEncryption
+      - setCarrierInfoForImsiEncryption
+      - setVisualVoicemailEnabled
+      - setVoiceActivationState
+      - setDataActivationState
+      - requestCellInfoUpdate
+      - requestNetworkScan
+      - setNetworkSelectionModeManual
+      - iccOpenLogicalChannel
+      - iccCloseLogicalChannelBySlot
+      - iccCloseLogicalChannel
+      - iccTransmitApduLogicalChannelBySlot
+      - iccTransmitApduLogicalChannel
+      - iccTransmitApduBasicChannelBySlot
+      - iccTransmitApduBasicChannel
+      - iccExchangeSimIO
+      - sendEnvelopeWithStatus
+      - nvReadItem
+      - nvWriteCdmaPrl
+      - nvResetConfig
+      - resetRadioConfig
+      - rebootRadio
+      - requestNumberVerification
+      - resetIms
+      - setNetworkSelectionModeAutomatic
+      - getAvailableNetworks
+      - setPreferredNetworkTypeBitmask
+      - setAllowedNetworkTypes
+      - setAllowedNetworkTypesForReason
+      - getAllowedNetworkTypesForReason
+      - isTetheringApnRequired
+      - getCdmaMdn
+      - getCdmaMin
+      - answerRingingCall
+      - supplyPin
+      - supplyPuk
+      - supplyPinReportResult
+      - supplyPukReportResult
+      - supplyPinReportPinResult
+      - supplyPukReportPinResult
+      - handlePinMmi
+      - handlePinMmiForSubscriber
+      - toggleRadioOnOff
+      - setRadio
+      - setRadioPower
+      - shutdownAllRadios
+      - enableDataConnectivity
+      - disableDataConnectivity
+      - setDataEnabled
+      - isDataEnabled
+      - setCdmaRoamingMode
+      - setCdmaSubscriptionMode
+      - setDataRoamingEnabled
+      - enableVideoCalling
+      - isVideoCallingEnabled
+      - setSimPowerState
+      - setSimPowerStateForSlot
+      - setVoicemailRingtoneUri
+      - setVoicemailVibrationEnabled
+      - getTelephonyHistograms
+      - setAllowedCarriers
+      - setCarrierRestrictionRules
+      - getAllowedCarriers
+      - setCarrierDataEnabled
+      - setRadioEnabled
+      - reportDefaultNetworkStatus
+      - resetAllCarrierActions
+      - setPolicyDataEnabled
+      - setAlwaysReportSignalStrength
+      - setCarrierTestOverride
+      - setOpportunisticNetworkState
+      - notifyOtaEmergencyNumberDbInstalled
+      - setPreferredOpportunisticDataSubscription
+      - updateAvailableNetworks
+      - enableModemForSlot
+      - setMultiSimCarrierRestriction
+      - switchMultiSimConfig
+      - setSystemSelectionChannels
+      - setCallForwarding
+      - setCallWaitingStatus
+      - setDataAllowedDuringVoiceCall
+      - setAlwaysAllowMmsData
+      - setIccLockEnabled
+      - changeIccLockPassword
+      - notifyUserActivity
+- id: MOUNT_FORMAT_FILESYSTEMS
+  name:  android.permission.MOUNT_FORMAT_FILESYSTEMS
+- id: MOUNT_UNMOUNT_FILESYSTEMS
+  name:  android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+- id: NFC
+  name:  android.permission.NFC
+  pattern:
+    - android.nfc.tech.NfcA
+    - - transceive
+      - setTimeout
+      - getTimeout
+    - android.nfc.tech.NfcB
+    - android.nfc.tech.NfcF
+    - android.nfc.tech.NfcV
+    - android.nfc.tech.NfcAdapter
+    - - setBeamPushUris
+      - setBeamPushUrisCallback
+      - setNdefPushMessage
+      - setNdefPushMessageCallback
+      - setOnNdefPushCompleteCallback
+      - enableForegroundDispatch
+      - disableForegroundDispatch
+      - enableForegroundNdefPush
+      - disableForegroundNdefPush
+    - android.nfc.tech.MifareUltralight
+    - android.nfc.tech.TagTechnology
+    - android.nfc.tech.MifareClassic
+- id: NFC_PREFERRED_PAYMENT_INFO
+  name:  android.permission.NFC_PREFERRED_PAYMENT_INFO
+- id: NFC_TRANSACTION_EVENT
+  name:  android.permission.NFC_TRANSACTION_EVENT
+  pattern:
+    - android.nfc.action.TRANSACTION_DETECTED
+- id: PACKAGE_USAGE_STATS
+  name:  android.permission.PACKAGE_USAGE_STATS
+  pattern:
+    - ActivityManager
+    - - getPackageImportance
+      - getUidImportance
+      - addOnUidImportanceListener
+      - removeOnUidImportanceListener
+    - Enviroment
+    - - queryStatsForPackage
+      - queryStatsForUid
+      - queryStatsForUser
+      - queryExternalStatsForUser
+- id: PERSISTENT_ACTIVITY
+  name:  android.permission.PERSISTENT_ACTIVITY
+- id: PROCESS_OUTGOING_CALLS
+  name:  android.permission.PROCESS_OUTGOING_CALLS
+  pattern:
+    - android.intent.action.NEW_OUTGOING_CALL
+- id: QUERY_ALL_PACKAGES
+  name:  android.permission.QUERY_ALL_PACKAGES
+- id: READ_CALENDAR
+  name:  android.permission.READ_CALENDAR
+- id: READ_CALL_LOG
+  name:  android.permission.READ_CALL_LOG
+  pattern:
+    - TelephonyManager
+    - - ACTION_PHONE_STATE_CHANGED
+    - PhoneStateListener
+    - - onCallStateChanged
+      - onOtaspChanged
+- id: READ_CONTACTS
+  name:  android.permission.READ_CONTACTS
+  pattern:
+    - android:accounts:key_legacy_visible
+- id: READ_EXTERNAL_STORAGE
+  name:  android.permission.READ_EXTERNAL_STORAGE
+  pattern:
+    - Enviroment
+    - - getExternalStorageDirectory
+      - isExternalStorageLegacy
+    - WallpaperManager
+    - - getFastDrawable
+      - peekFastDrawable
+      - getWallpaperFile
+- id: READ_INPUT_STATE
+  name:  android.permission.READ_INPUT_STATE
+- id: READ_LOGS
+  name:  android.permission.READ_LOGS
+- id: READ_PHONE_NUMBERS
+  name:  android.permission.READ_PHONE_NUMBERS
+  pattern: 
+    - TelephonyManager
+    - - getLine1Number
+      - getMsisdn
+- id: READ_PHONE_STATE
+  name:  android.permission.READ_PHONE_STATE
+  pattern: 
+    - TelephonyManager
+    - - isTtySupported
+      - getCurrentTtyMode
+      - showInCallScreen
+    - TelephonyManager
+    - - ACTION_PHONE_STATE_CHANGED
+      - getDeviceSoftwareVersion
+      - getDeviceId
+      - getImei
+      - getMeid
+      - getNai
+      - getCarrierConfig
+      - getNetworkType
+      - getDataNetworkType
+      - getVoiceNetworkType
+      - getSimCardState
+      - getSimApplicationState
+      - isApplicationOnUicc
+      - getSimSerialNumber
+      - isLteCdmaEvdoGsmWcdmaEnabled
+      - getLteOnCdmaMode
+      - getUiccCardsInfo
+      - getUiccSlotsInfo
+      - getLogicalToPhysicalSlotMapping
+      - getSubscriberId
+      - getCarrierInfoForImsiEncryption
+      - getGroupIdLevel1
+      - getLine1Number
+      - getLine1AlphaTag
+      - getMergedImsisFromGroup
+      - getMsisdn
+      - getVoiceMailNumber
+      - isVisualVoicemailEnabled
+      - getVisualVoicemailPackageName
+      - getActiveVisualVoicemailSmsFilterSettings
+      - getVoiceActivationState
+      - getVoiceMessageCount
+      - getVoiceMailAlphaTag
+      - getIsimDomain
+      - getIsimImpu
+      - getCdmaEriInformation
+      - getCdmaEriIconIndex
+      - getCdmaEriIconMode
+      - getCdmaEriText
+      - getCdmaEriText
+      - getIsimIst
+      - getForbiddenPlmns
+      - getPreferredNetworkType
+      - getPreferredNetworkTypeBitmask
+      - getAllowedNetworkTypes
+      - getNetworkSelectionMode
+      - getEffectiveAllowedNetworkTypes
+      - getCarrierPrivilegedPackagesForAllActiveSubscriptions
+      - isOffhook
+      - isRinging
+      - isIdle
+      - isRadioOn
+      - isAnyRadioPoweredOn
+      - getRadioPowerState
+      - isDataRoamingEnabled
+      - getCdmaRoamingMode
+      - getSimLocale
+      - getServiceState
+      - getCarrierIdFromMccMnc
+      - getCertsFromCarrierPrivilegeAccessRules
+      - getAidForAppType
+      - getCarrierRestrictionRules
+      - getEmergencyCallbackMode
+      - isDataConnectionAllowed
+      - getCarrierIdListVersion
+      - getNumberOfModemsWithSimultaneousDataConnections
+      - isOpportunisticNetworkEnabled
+      - getSupportedRadioAccessFamily
+      - isEmergencyAssistanceEnabled
+      - getEmergencyNumberList
+      - isPotentialEmergencyNumber
+      - getEmergencyNumberDbVersion
+      - getPreferredOpportunisticDataSubscription
+      - isModemEnabledForSlot
+      - isMultiSimSupported
+      - doesSwitchMultiSimConfigTriggerReboot
+      - getCarrierPrivilegeStatus
+      - isDataEnabledForApn
+      - isApnMetered
+      - matchesCurrentSimOperator
+      - getCallForwarding
+      - getCallWaitingStatus
+      - isDataAllowedInVoiceCall
+      - isIccLockEnabled
+    - - PhoneStateListener
+      - onPhoneCapabilityChanged
+      - onActiveDataSubscriptionIdChanged
+      - onCallAttributesChanged
+      - onRadioPowerStateChanged
+    - android.provider.action.SMS_MMS_DB_LOST
+- id: READ_PRECISE_PHONE_STATE
+  name:  android.permission.READ_PRECISE_PHONE_STATE
+  pattern: 
+    - TelephonyManager
+    - - getNetworkSelectionMode
+      - getManualNetworkSelectionPlmn
+      - isInEmergencySmsMode
+      - isManualNetworkSelectionAllowed
+    - - PhoneStateListener
+      - onPreciseCallStateChanged
+      - onCallDisconnectCauseChanged
+      - onImsCallDisconnectCauseChanged
+      - onPreciseDataConnectionStateChanged
+- id: READ_SMS
+  name:  android.permission.READ_SMS
+  pattern: 
+    - TelephonyManager
+    - - getLine1Number
+      - getMsisdn
+    - android.provider.action.SMS_MMS_DB_CREATED
+- id: READ_SYNC_SETTINGS
+  name:  android.permission.READ_SYNC_SETTINGS
+- id: READ_SYNC_STATS
+  name:  android.permission.READ_SYNC_STATS
+- id: READ_VOICEMAIL
+  name:  com.android.voicemail.permission.READ_VOICEMAIL
+- id: REBOOT
+  name:  android.permission.REBOOT
+- id: RECEIVE_BOOT_COMPLETED
+  name:  android.permission.RECEIVE_BOOT_COMPLETED
+  pattern:
+    - android.intent.action.LOCKED_BOOT_COMPLETED
+    - android.intent.action.BOOT_COMPLETED
+- id: RECEIVE_MMS
+  name:  android.permission.RECEIVE_MMS
+  pattern:
+    - android.provider.Telephony.WAP_PUSH_RECEIVED
+- id: RECEIVE_SMS
+  name:  android.permission.RECEIVE_SMS
+  pattern:
+    - android.provider.Telephony.SMS_DELIVER
+    - android.provider.Telephony.SMS_RECEIVED
+    - android.intent.action.DATA_SMS_RECEIVED
+    - android.provider.Telephony.WAP_PUSH_DELIVER
+    - android.provider.Telephony.SMS_CB_RECEIVED
+    - android.provider.Telephony.SMS_SERVICE_CATEGORY_PROGRAM_DATA_RECEIVED
+    - android.provider.Telephony.SIM_FULL
+    - android.provider.Telephony.SMS_REJECTED
+- id: RECEIVE_WAP_PUSH
+  name:  android.permission.RECEIVE_WAP_PUSH
+  pattern:
+    - android.provider.Telephony.WAP_PUSH_DELIVER
+    - android.provider.Telephony.WAP_PUSH_RECEIVED
+- id: RECORD_AUDIO
+  name:  android.permission.RECORD_AUDIO
+  pattern:
+    - RecognitionService
+    - SpeechRecognizer
+    - android.media.audiofx.Visualizer
+    - android.net.sip.SipAudioCall
+    - - startAudio
+- id: REORDER_TASKS
+  name:  android.permission.REORDER_TASKS
+  pattern:
+    - ActivityManager
+    - - moveTaskToFront
+- id: REQUEST_COMPANION_RUN_IN_BACKGROUND
+  name:  android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND
+- id: REQUEST_COMPANION_USE_DATA_IN_BACKGROUND
+  name:  android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND
+- id: REQUEST_DELETE_PACKAGES
+  name:  android.permission.REQUEST_DELETE_PACKAGES
+  pattern:
+    - PackageManager
+    - - deletePackage
+      - deletePackageAsUser
+    - PackageInstaller
+    - - uninstall
+    - android.intent.action.UNINSTALL_PACKAGE
+- id: REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+  name:  android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+- id: REQUEST_INSTALL_PACKAGES
+  name:  android.permission.REQUEST_INSTALL_PACKAGES
+  pattern:
+    - PackageManager
+    - - canRequestPackageInstalls
+    - PackageInstaller
+    - - installExistingPackage
+      - setPermissionsResult
+      - commitTransferred
+      - setStaged
+      - setInstallAsApex
+    - android.intent.action.INSTALL_PACKAGE
+    - android.intent.action.SPLIT_CONFIGURATION_CHANGED
+- id: REQUEST_PASSWORD_COMPLEXITY
+  name:  android.permission.REQUEST_PASSWORD_COMPLEXITY
+- id: RESTART_PACKAGES
+  name:  android.permission.RESTART_PACKAGES
+- id: SEND_RESPOND_VIA_MESSAGE
+  name:  android.permission.SEND_RESPOND_VIA_MESSAGE
+  pattern:
+    - TelephonyManager
+    - - ACTION_RESPOND_VIA_MESSAGE
+- id: SEND_SMS
+  name:  android.permission.SEND_SMS
+  pattern:
+    - TelephonyManager
+    - - sendVisualVoicemailSms
+      - sendVisualVoicemailSmsForSubscriber
+- id: SET_ALARM
+  name:  com.android.alarm.permission.SET_ALARM
+- id: SET_ALWAYS_FINISH
+  name:  android.permission.SET_ALWAYS_FINISH
+- id: SET_ANIMATION_SCALE
+  name:  android.permission.SET_ANIMATION_SCALE
+- id: SET_DEBUG_APP
+  name:  android.permission.SET_DEBUG_APP
+- id: SET_PREFERRED_APPLICATIONS
+  name:  android.permission.SET_PREFERRED_APPLICATIONS
+  pattern:
+    - PackageManager
+    - - updateIntentVerificationStatusAsUser
+      - setDefaultBrowserPackageNameAsUser
+- id: SET_PROCESS_LIMIT
+  name:  android.permission.SET_PROCESS_LIMIT
+- id: SET_TIME
+  name:  android.permission.SET_TIME
+  pattern: 
+    - AlarmManager
+    - - setTime
+- id: SET_TIME_ZONE
+  name:  android.permission.SET_TIME_ZONE
+  pattern: 
+    - AlarmManager
+    - - setTimeZone
+- id: SET_WALLPAPER
+  name:  android.permission.SET_WALLPAPER
+  pattern:
+    - WallpaperManager
+    - - setResource
+      - setBitmap
+      - setStream
+      - clearWallpaper
+      - clear
+    - Context
+    - - setWallpaper
+      - clearWallpaper
+- id: SET_WALLPAPER_HINTS
+  name:  android.permission.SET_WALLPAPER_HINTS
+  pattern:
+    - WallpaperManager
+    - - suggestDesiredDimensions
+      - setDisplayPadding
+- id: SIGNAL_PERSISTENT_PROCESSES
+  name:  android.permission.SIGNAL_PERSISTENT_PROCESSES
+- id: SMS_FINANCIAL_TRANSACTIONS
+  name:  android.permission.SMS_FINANCIAL_TRANSACTIONS
+- id: START_VIEW_PERMISSION_USAGE
+  name:  android.permission.START_VIEW_PERMISSION_USAGE
+  pattern:
+    - android.intent.action.VIEW_PERMISSION_USAGE
+- id: STATUS_BAR
+  name:  android.permission.STATUS_BAR
+  pattern:
+    - ConnectivityManager
+    - - reportInetCondition
+- id: SYSTEM_ALERT_WINDOW
+  name:  android.permission.SYSTEM_ALERT_WINDOW
+  pattern:
+    - android.provider.Settings
+    - - canDrawOverlays
+    - WindowManager
+    - - TYPE_APPLICATION_OVERLAY
+- id: TRANSMIT_IR
+  name:  android.permission.TRANSMIT_IR
+- id: UNINSTALL_SHORTCUT
+  name:  com.android.launcher.permission.UNINSTALL_SHORTCUT
+- id: UPDATE_DEVICE_STATS
+  name:  android.permission.UPDATE_DEVICE_STATS
+  pattern: 
+    - BluetoothLeScanner
+    - - startScanFromSource
+    - WifiManager
+    - - startScan
+    - AlarmManager
+    - - set
+- id: USE_BIOMETRIC
+  name:  android.permission.USE_BIOMETRIC
+  pattern:
+    - BiometricPrompt
+    - - canAuthenticate
+    - FingerprintManager
+    - - authenticate
+- id: USE_FINGERPRINT
+  name:  android.permission.USE_FINGERPRINT
+  pattern:
+    - AccessibilityService
+    - - getFingerprintGestureController
+    - FingerprintManager
+    - - authenticate
+      - getEnrolledFingerprints
+      - hasEnrolledFingerprints
+      - isHardwareDetected
+- id: USE_FULL_SCREEN_INTENT
+  name:  android.permission.USE_FULL_SCREEN_INTENT
+  pattern:
+    - Notification
+    - - setFullScreenIntent
+- id: USE_SIP
+  name:  android.permission.USE_SIP
+  pattern:
+    - android.net.sip.SipAudioCall
+    - - startAudio
+    - android.net.sip.SipManager
+- id: VIBRATE
+  name:  android.permission.VIBRATE
+  pattern:
+    - Vibrator
+    - - vibrate
+      - cancel
+    - Notification
+    - - DEFAULT_VIBRATE
+- id: WAKE_LOCK
+  name:  android.permission.WAKE_LOCK
+  pattern:
+    - android.os.PowerManager.WakeLock
+    - android.net.sip.SipAudioCall
+    - - startAudio
+    - MediaPlayer
+    - - setWakeMode
+- id: WRITE_APN_SETTINGS
+  name:  android.permission.WRITE_APN_SETTINGS
+- id: WRITE_CALENDAR
+  name:  android.permission.WRITE_CALENDAR
+- id: WRITE_CALL_LOG
+  name:  android.permission.WRITE_CALL_LOG
+  pattern:
+    - CallLog
+    - - CONTENT_URI_WITH_VOICEMAIL
+- id: WRITE_CONTACTS
+  name:  android.permission.WRITE_CONTACTS
+  pattern:
+    - android:accounts:key_legacy_visible
+- id: WRITE_EXTERNAL_STORAGE
+  name:  android.permission.WRITE_EXTERNAL_STORAGE
+  pattern:
+    - sdcard
+    - Enviroment
+    - - getExternalStorageDirectory
+      - isExternalStorageLegacy
+- id: WRITE_GSERVICES
+  name:  android.permission.WRITE_GSERVICES
+- id: WRITE_SECURE_SETTINGS
+  name:  android.permission.WRITE_SECURE_SETTINGS
+  pattern:
+    - LocationManager
+    - - setLocationEnabledForUser
+      - setProviderEnabledForUser
+    - InputMethodManager
+    - - setInputMethod
+      - setInputMethodAndSubtype
+      - showInputMethodPickerFromSystem
+      - setCurrentInputMethodSubtype
+    - NfcAdapter
+    - - enable
+      - disable
+      - enableSecureNfc
+      - enableNdefPush
+      - disableNdefPush
+      - dispatch
+      - addNfcUnlockHandler
+      - removeNfcUnlockHandler
+- id: WRITE_SETTINGS
+  name:  android.permission.WRITE_SETTINGS
+  pattern:
+    - ConnectivityManager
+    - - startUsingNetworkFeature
+      - stopUsingNetworkFeature
+      - requestRouteToHost
+      - requestRouteToHostAddress
+      - untether
+      - isTetheringSupported
+      - requestNetwork
+    - android.provider.Settings
+    - - canDrawOverlays
+- id: WRITE_SYNC_SETTINGS
+  name:  android.permission.WRITE_SYNC_SETTINGS
+  pattern:
+    - android.provider.Settings
+    - - putString
+      - resetToDefaults
+- id: WRITE_VOICEMAIL
+  name:  com.android.voicemail.permission.WRITE_VOICEMAIL
+  pattern:
+    - CallLog
+    - - CONTENT_URI_WITH_VOICEMAIL
