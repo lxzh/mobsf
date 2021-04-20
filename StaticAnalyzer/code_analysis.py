@@ -21,11 +21,9 @@ def code_analysis(app_dir, typ, manifest_file):
         root = Path(settings.BASE_DIR) 
         code_rules = root / 'rules' / 'android_rules.yaml'
         api_rules  = root / 'rules' / 'android_apis.yaml'
+        permission_rules = root / 'rules' / 'android_permission_apis.yaml'
         code_findings = {}
         api_findings = {}
-        email_n_file = []
-        url_n_file = []
-        url_list = []
         app_dir = Path(app_dir)
         if typ == 'apk':
             src = app_dir / 'java_source'
@@ -51,10 +49,18 @@ def code_analysis(app_dir, typ, manifest_file):
             {'.java', '.kt'},
             [src],
             skp)
+        permission_findings = scan(permission_rules.as_posix(),
+            {'.java', '.kt'},
+            [src],
+            skp)
         logger.info('Finished Code Analysis')
+        print("*************permission_findings*************")
+        print(permission_findings)
+        print("*************permission_findings*************")
         code_an_dic = {
             'api': api_findings,
             'findings': code_findings,
+            'permissions': permission_findings,
         }
         return code_an_dic
     except Exception:

@@ -34,8 +34,8 @@ def format_findings(findings, root):
     """Format findings."""
     for details in findings.values():
         tmp_dict = {}
-        print('**************************start')
-        print(details)
+        # print('**************************start')
+        # print(details)
         for file_meta in details['files']:
             file_meta['file_path'] = file_meta['file_path'].replace(root, '', 1)
             file_path = file_meta['file_path']
@@ -55,9 +55,9 @@ def format_findings(findings, root):
             else:
                 tmp_dict[file_path].extend(match_lines)
         details['files'] = tmp_dict
-        print('**************************')
-        print(details)
-        print('**************************end')
+        # print('**************************')
+        # print(details)
+        # print('**************************end')
     
     # sort the result with filepath
     for details in findings.values():
@@ -65,6 +65,6 @@ def format_findings(findings, root):
         for key in sorted(details['files'].keys()):
             tmp_dict[key] = str(sorted(list(set(details['files'][key]))))
         details['files'] =  tmp_dict
-    print(details)
-    print('=========================')
+    # print(details)
+    # print('=========================')
     return findings
