@@ -60,7 +60,7 @@ def code_analysis(app_dir, typ, manifest_file):
         code_an_dic = {
             'api': api_findings,
             'findings': code_findings,
-            'permissions': permission_findings,
+            'api_permissions': permission_findings,
         }
         return code_an_dic
     except Exception:

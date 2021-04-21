@@ -51,6 +51,7 @@ def get_context_from_analysis(app_dic,
             'file_analysis':        python_list(app_dic['certz']),
             'android_api':          python_dict(code_an_dic['api']),
             'code_analysis':        python_dict(code_an_dic['findings']),
+            'api_permissions':      python_dict(code_an_dic['api_permissions']),
             'files':                python_list(app_dic['files']),
             'exported_count':       python_dict(man_an_dic['exported_cnt']),
         }

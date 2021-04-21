@@ -180,10 +180,13 @@
             <table class="basic">
               <thead>
             <tr>
-                <th>PERMISSION</th>
-                <th>STATUS</th>
-                <th>INFO </th>
-                <th>DESCRIPTION</th>
+                <th>权限</th>
+                <th>状态</th>
+                <th>信息 </th>
+                <th>权限描述</th>
+                <th>是否申请</th>
+                <th>是否使用</th>
+                <th>建议</th>
               </tr>
             </thead>
             <tbody>
@@ -205,6 +208,9 @@
             </td>
             <td>{{ desc.info }}</td>
             <td>{{ desc.description }}</td>
+            <td>是</td>
+            <td>{{ desc.use }}</td>
+            <td>{{ desc.suggest }}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -361,6 +367,7 @@
                 <th>NO</th>
                 <th>API</th>
                 <th>Pattern</th>
+                <th>SEVERITY</th>
                 <th>FILES</th>
               </tr>
           </thead>
@@ -371,12 +378,26 @@
             <td width="10%">
               {{ details.metadata.description }}
             </td>
-            <td width="25%">
+            <td width="20%">
               {{ details.metadata.pattern }}
             </td>
+            <td width="5%">
+              {% if details.metadata.severity == "high" %}
+              <span class="danger">high</span>
+              {% elif details.metadata.severity == "good" %}
+              <span class="success">secure</span>
+              {% elif details.metadata.severity == "warning" %}
+              <span class="warning">warning</span>
+              {% elif details.metadata.severity == "info" %}
+              <span class="info">info</span>
+              {% endif %}
+            </td>
             <td width="60%">
+              {% if details.metadata|key:"suggest" %}
+                {{ details.metadata.suggest }}<br/>
+              {% endif %}
               {% for file_path, lines in details.files.items %}
-                  {{ file_path }} {{lines}}<br/>
+                {{ file_path }} {{lines}}<br/>
               {% endfor %}
             </td>
             </tr>    

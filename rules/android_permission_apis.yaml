@@ -1,21 +1,21 @@
-- id: ACCEPT_HANDOVER
-  description: android.permission.ACCEPT_HANDOVER
+- id: android.permission.ACCEPT_HANDOVER
+  name: ACCEPT_HANDOVER
   pattern: 
     - TelecomManager
     - acceptHandover
   input_case: exact
   severity: info
   type: RegexAnd
-- id: ACCESS_BACKGROUND_LOCATION
-  description: android.permission.ACCESS_BACKGROUND_LOCATION
+- id: android.permission.ACCESS_BACKGROUND_LOCATION
+  name: ACCESS_BACKGROUND_LOCATION
   pattern: 
     - TelephonyManager
     - requestNetworkScan
   input_case: exact
   severity: info
   type: RegexAnd
-- id: ACCESS_COARSE_LOCATION
-  description: android.permission.ACCESS_COARSE_LOCATION
+- id: android.permission.ACCESS_COARSE_LOCATION
+  name: ACCESS_COARSE_LOCATION
   pattern: 
     - TelephonyManager|LocationManager|IdentityChangedListener|BluetoothLeScanner
     - - getNeighboringCellInfo
@@ -39,8 +39,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: ACCESS_FINE_LOCATION
-  description: android.permission.ACCESS_FINE_LOCATION
+- id: android.permission.ACCESS_FINE_LOCATION
+  name: ACCESS_FINE_LOCATION
   pattern: 
     - TelephonyManager|LocationManager|BluetoothLeScanner|WifiAwareSession|WifiManager|WifiAwareManager|WifiRttManager
     - - getCellLocation
@@ -78,8 +78,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: ACCESS_NETWORK_STATE
-  description: android.permission.ACCESS_NETWORK_STATE
+- id: android.permission.ACCESS_NETWORK_STATE
+  name: ACCESS_NETWORK_STATE
   pattern: 
     - TelephonyManager|ConnectivityManager
     - - isDataEnabled
@@ -109,14 +109,14 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: ACCESS_NOTIFICATION_POLICY
-  description: android.permission.ACCESS_NOTIFICATION_POLICY
+- id: android.permission.ACCESS_NOTIFICATION_POLICY
+  name: ACCESS_NOTIFICATION_POLICY
   pattern: ConditionProviderService
   input_case: exact
   severity: info
   type: Regex
-- id: ACCESS_WIFI_STATE
-  description: android.permission.ACCESS_WIFI_STATE
+- id: android.permission.ACCESS_WIFI_STATE
+  name: ACCESS_WIFI_STATE
   pattern: 
     - WifiManager|WifiRttManager|android\.net\.sip\.SipAudioCall
     - - getConfiguredNetworks
@@ -141,20 +141,20 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: ACCOUNT_MANAGER
-  description: android.permission.ACCOUNT_MANAGER
+- id: android.permission.ACCOUNT_MANAGER
+  name: ACCOUNT_MANAGER
   pattern: AbstractAccountAuthenticator
   input_case: exact
   severity: info
   type: Regex
-- id: ADD_VOICEMAIL
-  description: com.android.voicemail.permission.ADD_VOICEMAIL
+- id: com.android.voicemail.permission.ADD_VOICEMAIL
+  name: ADD_VOICEMAIL
   pattern: VoicemailContract
   input_case: exact
   severity: info
   type: Regex
-- id: ANSWER_PHONE_CALLS
-  description: android.permission.ANSWER_PHONE_CALLS
+- id: android.permission.ANSWER_PHONE_CALLS
+  name: ANSWER_PHONE_CALLS
   pattern:
     - TelecomManager
     - - endCall
@@ -162,22 +162,22 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: BATTERY_STATS
-  description: android.permission.BATTERY_STATS
+- id: android.permission.BATTERY_STATS
+  name: BATTERY_STATS
   pattern:
     - SystemHealthManager|android\.intent\.action\.BATTERY_LEVEL_CHANGED
     - takeUidSnapshot
   input_case: exact
   severity: info
   type: RegexOr
-- id: BIND_ACCESSIBILITY_SERVICE
-  description: android.permission.BIND_ACCESSIBILITY_SERVICE
+- id: android.permission.BIND_ACCESSIBILITY_SERVICE
+  name: BIND_ACCESSIBILITY_SERVICE
   pattern: AccessibilityService
   input_case: exact
   severity: info
   type: Regex
-- id: BIND_APPWIDGET
-  description: android.permission.BIND_APPWIDGET
+- id: android.permission.BIND_APPWIDGET
+  name: BIND_APPWIDGET
   pattern:
     - AppWidgetManager
     - - bindAppWidgetId
@@ -185,20 +185,20 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: BIND_CONDITION_PROVIDER_SERVICE
-  description: android.permission.BIND_CONDITION_PROVIDER_SERVICE
+- id: android.permission.BIND_CONDITION_PROVIDER_SERVICE
+  name: BIND_CONDITION_PROVIDER_SERVICE
   pattern: ConditionProviderService
   input_case: exact
   severity: info
   type: Regex
-- id: BIND_INCALL_SERVICE
-  description: android.permission.BIND_INCALL_SERVICE
+- id: android.permission.BIND_INCALL_SERVICE
+  name: BIND_INCALL_SERVICE
   pattern: InCallService
   input_case: exact
   severity: info
   type: Regex
-- id: BIND_VPN_SERVICE
-  description: android.permission.BIND_VPN_SERVICE
+- id: android.permission.BIND_VPN_SERVICE
+  name: BIND_VPN_SERVICE
   pattern:
     - ConnectivityManager|VpnService
     - - setAlwaysOnVpnPackageForUser
@@ -206,8 +206,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: BLUETOOTH_ADMIN
-  description: android.permission.BLUETOOTH_ADMIN
+- id: android.permission.BLUETOOTH_ADMIN
+  name: BLUETOOTH_ADMIN
   pattern: 
     - BluetoothLeScanner
     - - startScan
@@ -216,14 +216,14 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: BROADCAST_SMS
-  description: android.permission.BROADCAST_SMS
+- id: android.permission.BROADCAST_SMS
+  name: BROADCAST_SMS
   pattern: android.provider.Telephony.SMS_DELIVER
   input_case: exact
   severity: info
   type: Regex
-- id: BROADCAST_STICKY
-  description: android.permission.BROADCAST_STICKY
+- id: android.permission.BROADCAST_STICKY
+  name: BROADCAST_STICKY
   pattern:
     - Context
     - - sendStickyBroadcast
@@ -235,14 +235,14 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: BROADCAST_WAP_PUSH
-  description: android.permission.BROADCAST_WAP_PUSH
+- id: android.permission.BROADCAST_WAP_PUSH
+  name: BROADCAST_WAP_PUSH
   pattern: android.provider.Telephony.WAP_PUSH_DELIVER
   input_case: exact
   severity: info
   type: Regex
-- id: CALL_PHONE
-  description: android.permission.CALL_PHONE
+- id: android.permission.CALL_PHONE
+  name: CALL_PHONE
   pattern: 
     - TelecomManager|TelephonyManager|android\.intent\.action\.CALL
     - - placeCall
@@ -252,16 +252,16 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: CALL_PRIVILEGED
-  description: android.permission.CALL_PRIVILEGED
+- id: android.permission.CALL_PRIVILEGED
+  name: CALL_PRIVILEGED
   pattern:
     - TelephonyManager
     - getCompleteVoiceMailNumber
   input_case: exact
   severity: info
   type: RegexAnd
-- id: CAMERA
-  description: android.permission.CAMERA
+- id: android.permission.CAMERA
+  name: CAMERA
   pattern:
     - android\.hardware\.Camera
     - android\.hardware\.camera2\.CameraManager
@@ -269,14 +269,14 @@
   input_case: exact
   severity: info
   type: RegexOr
-- id: CAPTURE_AUDIO_OUTPUT
-  description: android.permission.CAPTURE_AUDIO_OUTPUT
+- id: android.permission.CAPTURE_AUDIO_OUTPUT
+  name: CAPTURE_AUDIO_OUTPUT
   pattern: MediaRecorder
   input_case: exact
   severity: info
   type: Regex
-- id: CHANGE_COMPONENT_ENABLED_STATE
-  description: android.permission.CHANGE_COMPONENT_ENABLED_STATE
+- id: android.permission.CHANGE_COMPONENT_ENABLED_STATE
+  name: CHANGE_COMPONENT_ENABLED_STATE
   pattern:
     - PackageManager
     - - setComponentEnabledSetting
@@ -284,16 +284,16 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: CHANGE_CONFIGURATION
-  description: android.permission.CHANGE_CONFIGURATION
+- id: android.permission.CHANGE_CONFIGURATION
+  name: CHANGE_CONFIGURATION
   pattern:
     - ActivityManager
     - scheduleApplicationInfoChanged
   input_case: exact
   severity: info
   type: RegexAnd
-- id: CHANGE_NETWORK_STATE
-  description: android.permission.CHANGE_NETWORK_STATE
+- id: android.permission.CHANGE_NETWORK_STATE
+  name: CHANGE_NETWORK_STATE
   pattern:
     - ConnectivityManager
     - - startUsingNetworkFeature
@@ -305,8 +305,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: CHANGE_WIFI_STATE
-  description: android.permission.CHANGE_WIFI_STATE
+- id: android.permission.CHANGE_WIFI_STATE
+  name: CHANGE_WIFI_STATE
   pattern: 
     - WifiManager|WifiRttManager
     - - addNetwork
@@ -327,8 +327,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: CONTROL_LOCATION_UPDATES
-  description: android.permission.CONTROL_LOCATION_UPDATES
+- id: android.permission.CONTROL_LOCATION_UPDATES
+  name: CONTROL_LOCATION_UPDATES
   pattern: 
     - TelephonyManager
     - - enableLocationUpdates
@@ -336,8 +336,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: DELETE_CACHE_FILES
-  description: android.permission.DELETE_CACHE_FILES
+- id: android.permission.DELETE_CACHE_FILES
+  name: DELETE_CACHE_FILES
   pattern:
     - PackageManager
     - - deleteApplicationCacheFiles
@@ -345,16 +345,16 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: DELETE_PACKAGES
-  description: android.permission.DELETE_PACKAGES
+- id: android.permission.DELETE_PACKAGES
+  name: DELETE_PACKAGES
   pattern:
     - PackageInstaller
     - uninstall
   input_case: exact
   severity: info
   type: RegexAnd
-- id: DISABLE_KEYGUARD
-  description: android.permission.DISABLE_KEYGUARD
+- id: android.permission.DISABLE_KEYGUARD
+  name: DISABLE_KEYGUARD
   pattern:
     - KeyguardManager
     - - disableKeyguard
@@ -363,8 +363,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: DUMP
-  description: android.permission.DUMP
+- id: android.permission.DUMP
+  name: DUMP
   pattern:
     - TelecomManager|ActivityManager
     - - dumpAnalytics
@@ -372,24 +372,24 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: EXPAND_STATUS_BAR
-  description: android.permission.EXPAND_STATUS_BAR
+- id: android.permission.EXPAND_STATUS_BAR
+  name: EXPAND_STATUS_BAR
   pattern:
     - ConnectivityManager
     - reportInetCondition
   input_case: exact
   severity: info
   type: RegexAnd
-- id: FOREGROUND_SERVICE
-  description: android.permission.FOREGROUND_SERVICE
+- id: android.permission.FOREGROUND_SERVICE
+  name: FOREGROUND_SERVICE
   pattern:
     - Service
     - startForeground
   input_case: exact
   severity: info
   type: RegexAnd
-- id: GET_ACCOUNTS
-  description: android.permission.GET_ACCOUNTS
+- id: android.permission.GET_ACCOUNTS
+  name: GET_ACCOUNTS
   pattern:
     - android\:accounts\:key_legacy_visible|AccountManager
     - - getAccountsByType
@@ -398,22 +398,22 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: GET_ACCOUNTS_PRIVILEGED
-  description: android.permission.GET_ACCOUNTS_PRIVILEGED
+- id: android.permission.GET_ACCOUNTS_PRIVILEGED
+  name: GET_ACCOUNTS_PRIVILEGED
   pattern: android\:accounts\:key_legacy_visible
   input_case: exact
   severity: info
   type: Regex
-- id: GET_PACKAGE_SIZE
-  description: android.permission.GET_PACKAGE_SIZE
+- id: android.permission.GET_PACKAGE_SIZE
+  name: GET_PACKAGE_SIZE
   pattern:
     - PackageManager
     - getPackageSizeInfoAsUser
   input_case: exact
   severity: info
   type: RegexAnd
-- id: INSTALL_PACKAGES
-  description: android.permission.INSTALL_PACKAGES
+- id: android.permission.INSTALL_PACKAGES
+  name: INSTALL_PACKAGES
   pattern:
     - PackageManager
     - - installExistingPackageAsUser
@@ -421,8 +421,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: INTERNET
-  description: android.permission.INTERNET
+- id: android.permission.INTERNET
+  name: INTERNET
   pattern:
     - android\.net\.sip\.SipAudioCall
     - android\.net\.sip\.SipManager
@@ -439,16 +439,16 @@
   input_case: exact
   severity: info
   type: RegexOr
-- id: KILL_BACKGROUND_PROCESSES
-  description: android.permission.KILL_BACKGROUND_PROCESSES
+- id: android.permission.KILL_BACKGROUND_PROCESSES
+  name: KILL_BACKGROUND_PROCESSES
   pattern:
     - ActivityManager
     - - killBackgroundProcesses
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: LOCATION_HARDWARE
-  description: android.permission.LOCATION_HARDWARE
+- id: android.permission.LOCATION_HARDWARE
+  name: LOCATION_HARDWARE
   pattern:
     - LocationManager|WifiRttManager
     - - injectLocation
@@ -464,8 +464,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: MANAGE_DOCUMENTS
-  description: android.permission.MANAGE_DOCUMENTS
+- id: android.permission.MANAGE_DOCUMENTS
+  name: MANAGE_DOCUMENTS
   pattern:
     - DocumentsProvider|ContentProvider\.Transport|android\.intent\.extra\.ORIGINATING_UID
     - - attachInfo
@@ -474,8 +474,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: MANAGE_OWN_CALLS
-  description: android.permission.MANAGE_OWN_CALLS
+- id: android.permission.MANAGE_OWN_CALLS
+  name: MANAGE_OWN_CALLS
   pattern: 
     - TelecomManager
     - - acceptHandover
@@ -483,22 +483,22 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: MASTER_CLEAR
-  description: android.permission.MASTER_CLEAR
+- id: android.permission.MASTER_CLEAR
+  name: MASTER_CLEAR
   pattern: android\.intent\.action\.FACTORY_RESET
   input_case: exact
   severity: info
   type: Regex
-- id: MODIFY_AUDIO_SETTINGS
-  description: android.permission.MODIFY_AUDIO_SETTINGS
+- id: android.permission.MODIFY_AUDIO_SETTINGS
+  name: MODIFY_AUDIO_SETTINGS
   pattern:
     - android\.media\.audiofx\.Visualizer|android\.net\.sip\.SipAudioCall
     - setSpeakerMode
   input_case: exact
   severity: info
   type: RegexOr
-- id: MODIFY_PHONE_STATE
-  description: android.permission.MODIFY_PHONE_STATE
+- id: android.permission.MODIFY_PHONE_STATE
+  name: MODIFY_PHONE_STATE
   pattern: 
     - TelecomManager|TelephonyManager
     - - acceptRingingCall
@@ -598,8 +598,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: NFC
-  description: android.permission.NFC
+- id: android.permission.NFC
+  name: NFC
   pattern:
     - android\.nfc\.tech\.NfcA|android\.nfc\.tech\.NfcB|android\.nfc\.tech\.NfcF|android\.nfc\.tech\.NfcV|android\.nfc\.tech\.NfcAdapter|android\.nfc\.tech\.MifareUltralight|android\.nfc\.tech\.TagTechnology|android\.nfc\.tech\.MifareClassic
     - - transceive
@@ -617,14 +617,14 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: NFC_TRANSACTION_EVENT
-  description: android.permission.NFC_TRANSACTION_EVENT
+- id: android.permission.NFC_TRANSACTION_EVENT
+  name: NFC_TRANSACTION_EVENT
   pattern: android\.nfc\.action\.TRANSACTION_DETECTED
   input_case: exact
   severity: info
   type: Regex
-- id: PACKAGE_USAGE_STATS
-  description: android.permission.PACKAGE_USAGE_STATS
+- id: android.permission.PACKAGE_USAGE_STATS
+  name: PACKAGE_USAGE_STATS
   pattern:
     - ActivityManager|Enviroment
     - - getPackageImportance
@@ -638,14 +638,14 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: PROCESS_OUTGOING_CALLS
-  description: android.permission.PROCESS_OUTGOING_CALLS
+- id: android.permission.PROCESS_OUTGOING_CALLS
+  name: PROCESS_OUTGOING_CALLS
   pattern: android\.intent\.action\.NEW_OUTGOING_CALL
   input_case: exact
   severity: info
   type: Regex
-- id: READ_CALL_LOG
-  description: android.permission.READ_CALL_LOG
+- id: android.permission.READ_CALL_LOG
+  name: READ_CALL_LOG
   pattern:
     - TelephonyManager|PhoneStateListener
     - - ACTION_PHONE_STATE_CHANGED
@@ -654,14 +654,14 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: READ_CONTACTS
-  description: android.permission.READ_CONTACTS
+- id: android.permission.READ_CONTACTS
+  name: READ_CONTACTS
   pattern: android\:accounts\:key_legacy_visible
   input_case: exact
   severity: info
   type: Regex
-- id: READ_EXTERNAL_STORAGE
-  description: android.permission.READ_EXTERNAL_STORAGE
+- id: android.permission.READ_EXTERNAL_STORAGE
+  name: READ_EXTERNAL_STORAGE
   pattern:
     - Enviroment|WallpaperManager
     - - getExternalStorageDirectory
@@ -672,8 +672,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: READ_PHONE_NUMBERS
-  description: android.permission.READ_PHONE_NUMBERS
+- id: android.permission.READ_PHONE_NUMBERS
+  name: READ_PHONE_NUMBERS
   pattern: 
     - TelephonyManager
     - - getLine1Number
@@ -681,8 +681,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: READ_PHONE_STATE
-  description: android.permission.READ_PHONE_STATE
+- id: android.permission.READ_PHONE_STATE
+  name: READ_PHONE_STATE
   pattern: 
     - TelephonyManager|TelephonyManager|PhoneStateListener|android\.provider\.action\.SMS_MMS_DB_LOST
     - - isTtySupported
@@ -779,8 +779,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: READ_PRECISE_PHONE_STATE
-  description: android.permission.READ_PRECISE_PHONE_STATE
+- id: android.permission.READ_PRECISE_PHONE_STATE
+  name: READ_PRECISE_PHONE_STATE
   pattern: 
     - TelephonyManager|PhoneStateListener
     - - getNetworkSelectionMode
@@ -794,8 +794,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: READ_SMS
-  description: android.permission.READ_SMS
+- id: android.permission.READ_SMS
+  name: READ_SMS
   pattern: 
     - TelephonyManager|android\.provider\.action\.SMS_MMS_DB_CREATED
     - - getLine1Number
@@ -803,22 +803,22 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: RECEIVE_BOOT_COMPLETED
-  description: android.permission.RECEIVE_BOOT_COMPLETED
+- id: android.permission.RECEIVE_BOOT_COMPLETED
+  name: RECEIVE_BOOT_COMPLETED
   pattern:
     - android\.intent\.action\.LOCKED_BOOT_COMPLETED
     - android\.intent\.action\.BOOT_COMPLETED
   input_case: exact
   severity: info
   type: RegexOr
-- id: RECEIVE_MMS
-  description: android.permission.RECEIVE_MMS
+- id: android.permission.RECEIVE_MMS
+  name: RECEIVE_MMS
   pattern: android.provider.Telephony.WAP_PUSH_RECEIVED
   input_case: exact
   severity: info
   type: Regex
-- id: RECEIVE_SMS
-  description: android.permission.RECEIVE_SMS
+- id: android.permission.RECEIVE_SMS
+  name: RECEIVE_SMS
   pattern:
     - android\.provider\.Telephony\.SMS_DELIVER
     - android\.provider\.Telephony\.SMS_RECEIVED
@@ -831,32 +831,32 @@
   input_case: exact
   severity: info
   type: RegexOr
-- id: RECEIVE_WAP_PUSH
-  description: android.permission.RECEIVE_WAP_PUSH
+- id: android.permission.RECEIVE_WAP_PUSH
+  name: RECEIVE_WAP_PUSH
   pattern:
     - android\.provider\.Telephony\.WAP_PUSH_DELIVER
     - android\.provider\.Telephony\.WAP_PUSH_RECEIVED
   input_case: exact
   severity: info
   type: RegexOr
-- id: RECORD_AUDIO
-  description: android.permission.RECORD_AUDIO
+- id: android.permission.RECORD_AUDIO
+  name: RECORD_AUDIO
   pattern:
     - RecognitionService|SpeechRecognizer|android\.media\.audiofx.Visualizer|android\.net\.sip\.SipAudioCall
     - startAudio
   input_case: exact
   severity: info
   type: RegexOr
-- id: REORDER_TASKS
-  description: android.permission.REORDER_TASKS
+- id: android.permission.REORDER_TASKS
+  name: REORDER_TASKS
   pattern:
     - ActivityManager
     - moveTaskToFront
   input_case: exact
   severity: info
   type: RegexAnd
-- id: REQUEST_DELETE_PACKAGES
-  description: android.permission.REQUEST_DELETE_PACKAGES
+- id: android.permission.REQUEST_DELETE_PACKAGES
+  name: REQUEST_DELETE_PACKAGES
   pattern:
     - PackageManager|PackageInstaller|android.intent.action.UNINSTALL_PACKAGE
     - - deletePackage
@@ -865,8 +865,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: REQUEST_INSTALL_PACKAGES
-  description: android.permission.REQUEST_INSTALL_PACKAGES
+- id: android.permission.REQUEST_INSTALL_PACKAGES
+  name: REQUEST_INSTALL_PACKAGES
   pattern:
     - PackageManager|PackageInstaller|android\.intent\.action\.INSTALL_PACKAGE|android\.intent\.action\.SPLIT_CONFIGURATION_CHANGED
     - - canRequestPackageInstalls
@@ -878,16 +878,16 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: SEND_RESPOND_VIA_MESSAGE
-  description: android.permission.SEND_RESPOND_VIA_MESSAGE
+- id: android.permission.SEND_RESPOND_VIA_MESSAGE
+  name: SEND_RESPOND_VIA_MESSAGE
   pattern:
     - TelephonyManager
     - ACTION_RESPOND_VIA_MESSAGE
   input_case: exact
   severity: info
   type: RegexAnd
-- id: SEND_SMS
-  description: android.permission.SEND_SMS
+- id: android.permission.SEND_SMS
+  name: SEND_SMS
   pattern:
     - TelephonyManager
     - - sendVisualVoicemailSms
@@ -895,8 +895,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: SET_PREFERRED_APPLICATIONS
-  description: android.permission.SET_PREFERRED_APPLICATIONS
+- id: android.permission.SET_PREFERRED_APPLICATIONS
+  name: SET_PREFERRED_APPLICATIONS
   pattern:
     - PackageManager
     - - updateIntentVerificationStatusAsUser
@@ -904,24 +904,24 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: SET_TIME
-  description: android.permission.SET_TIME
+- id: android.permission.SET_TIME
+  name: SET_TIME
   pattern: 
     - AlarmManager
     - setTime
   input_case: exact
   severity: info
   type: RegexAnd
-- id: SET_TIME_ZONE
-  description: android.permission.SET_TIME_ZONE
+- id: android.permission.SET_TIME_ZONE
+  name: SET_TIME_ZONE
   pattern: 
     - AlarmManager
     - setTimeZone
   input_case: exact
   severity: info
   type: RegexAnd
-- id: SET_WALLPAPER
-  description: android.permission.SET_WALLPAPER
+- id: android.permission.SET_WALLPAPER
+  name: SET_WALLPAPER
   pattern:
     - WallpaperManager|Context
     - - setResource
@@ -933,8 +933,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: SET_WALLPAPER_HINTS
-  description: android.permission.SET_WALLPAPER_HINTS
+- id: android.permission.SET_WALLPAPER_HINTS
+  name: SET_WALLPAPER_HINTS
   pattern:
     - WallpaperManager
     - - suggestDesiredDimensions
@@ -942,22 +942,22 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: START_VIEW_PERMISSION_USAGE
-  description: android.permission.START_VIEW_PERMISSION_USAGE
+- id: android.permission.START_VIEW_PERMISSION_USAGE
+  name: START_VIEW_PERMISSION_USAGE
   pattern: android\.intent\.action\.VIEW_PERMISSION_USAGE
   input_case: exact
   severity: info
   type: Regex
-- id: STATUS_BAR
-  description: android.permission.STATUS_BAR
+- id: android.permission.STATUS_BAR
+  name: STATUS_BAR
   pattern:
     - ConnectivityManager
     - reportInetCondition
   input_case: exact
   severity: info
   type: RegexAnd
-- id: SYSTEM_ALERT_WINDOW
-  description: android.permission.SYSTEM_ALERT_WINDOW
+- id: android.permission.SYSTEM_ALERT_WINDOW
+  name: SYSTEM_ALERT_WINDOW
   pattern:
     - android.provider.Settings|WindowManager
     - - canDrawOverlays
@@ -965,8 +965,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: UPDATE_DEVICE_STATS
-  description: android.permission.UPDATE_DEVICE_STATS
+- id: android.permission.UPDATE_DEVICE_STATS
+  name: UPDATE_DEVICE_STATS
   pattern: 
     - BluetoothLeScanner|WifiManager|AlarmManager
     - - startScanFromSource
@@ -974,8 +974,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: USE_BIOMETRIC
-  description: android.permission.USE_BIOMETRIC
+- id: android.permission.USE_BIOMETRIC
+  name: USE_BIOMETRIC
   pattern:
     - BiometricPrompt|FingerprintManager
     - - canAuthenticate
@@ -983,8 +983,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: USE_FINGERPRINT
-  description: android.permission.USE_FINGERPRINT
+- id: android.permission.USE_FINGERPRINT
+  name: USE_FINGERPRINT
   pattern:
     - AccessibilityService|FingerprintManager
     - - getFingerprintGestureController
@@ -995,24 +995,24 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: USE_FULL_SCREEN_INTENT
-  description: android.permission.USE_FULL_SCREEN_INTENT
+- id: android.permission.USE_FULL_SCREEN_INTENT
+  name: USE_FULL_SCREEN_INTENT
   pattern:
     - Notification
     - setFullScreenIntent
   input_case: exact
   severity: info
   type: RegexAnd
-- id: USE_SIP
-  description: android.permission.USE_SIP
+- id: android.permission.USE_SIP
+  name: USE_SIP
   pattern:
     - android\.net\.sip\.SipAudioCall|android\.net\.sip\.SipManager
     - startAudio
   input_case: exact
   severity: info
   type: RegexOr
-- id: VIBRATE
-  description: android.permission.VIBRATE
+- id: android.permission.VIBRATE
+  name: VIBRATE
   pattern:
     - Vibrator|Notification
     - - vibrate
@@ -1020,8 +1020,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: WAKE_LOCK
-  description: android.permission.WAKE_LOCK
+- id: android.permission.WAKE_LOCK
+  name: WAKE_LOCK
   pattern:
     - android\.os\.PowerManager\.WakeLock|android\.net\.sip\.SipAudioCall|MediaPlayer
     - - startAudio
@@ -1029,22 +1029,22 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: WRITE_CALL_LOG
-  description: android.permission.WRITE_CALL_LOG
+- id: android.permission.WRITE_CALL_LOG
+  name: WRITE_CALL_LOG
   pattern:
     - CallLog
     - CONTENT_URI_WITH_VOICEMAIL
   input_case: exact
   severity: info
   type: RegexAnd
-- id: WRITE_CONTACTS
-  description: android.permission.WRITE_CONTACTS
+- id: android.permission.WRITE_CONTACTS
+  name: WRITE_CONTACTS
   pattern: android:accounts:key_legacy_visible
   input_case: exact
   severity: info
   type: Regex
-- id: WRITE_EXTERNAL_STORAGE
-  description: android.permission.WRITE_EXTERNAL_STORAGE
+- id: android.permission.WRITE_EXTERNAL_STORAGE
+  name: WRITE_EXTERNAL_STORAGE
   pattern:
     - sdcard|Enviroment
     - - getExternalStorageDirectory
@@ -1052,8 +1052,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: WRITE_SECURE_SETTINGS
-  description: android.permission.WRITE_SECURE_SETTINGS
+- id: android.permission.WRITE_SECURE_SETTINGS
+  name: WRITE_SECURE_SETTINGS
   pattern:
     - LocationManager|InputMethodManager|NfcAdapter
     - - setLocationEnabledForUser
@@ -1073,8 +1073,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: WRITE_SETTINGS
-  description: android.permission.WRITE_SETTINGS
+- id: android.permission.WRITE_SETTINGS
+  name: WRITE_SETTINGS
   pattern:
     - ConnectivityManager|android\.provider\.Settings
     - - startUsingNetworkFeature
@@ -1088,8 +1088,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: WRITE_SYNC_SETTINGS
-  description: android.permission.WRITE_SYNC_SETTINGS
+- id: android.permission.WRITE_SYNC_SETTINGS
+  name: WRITE_SYNC_SETTINGS
   pattern:
     - android\.provider\.Settings
     - - putString
@@ -1097,8 +1097,8 @@
   input_case: exact
   severity: info
   type: RegexAndOr
-- id: WRITE_VOICEMAIL
-  description: com.android.voicemail.permission.WRITE_VOICEMAIL
+- id: com.android.voicemail.permission.WRITE_VOICEMAIL
+  name: WRITE_VOICEMAIL
   pattern:
     - CallLog
     - CONTENT_URI_WITH_VOICEMAIL

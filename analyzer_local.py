@@ -18,9 +18,12 @@ def main():
     outpath = None
     if (argc > 2):
         outpath = sys.argv[2]
+    category = -1
+    if (argc > 3):
+        category = int(sys.argv[3])
 
     from StaticAnalyzer.static_analyzer import static_analyzer_local
-    static_analyzer_local(filename, outpath)
+    static_analyzer_local(filename, outpath, category)
 
 
 if __name__ == "__main__" :

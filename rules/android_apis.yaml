@@ -4,12 +4,14 @@
   pattern: System\.loadLibrary\(|System\.load\(
   input_case: exact
   severity: info
+  suggest:
 - id: api_get_system_service
   description: Get System Service
   type: Regex
   pattern: getSystemService
   input_case: exact
   severity: info
+  suggest:
 - id: api_dexloading
   description: Dynamic Class and Dexloading
   type: RegexOr
@@ -19,7 +21,8 @@
     - java\.net\.URLClassLoader
     - java\.security\.SecureClassLoader
   input_case: exact
-  severity: info
+  severity: high
+  suggest: 您在以下代码位置使用了动态加载 apk/jar/dex，请确认是否加载的 apk/jar/dex 是否存在安全隐患?
 - id: api_java_reflection
   description: Java Reflection
   type: RegexOr
@@ -29,6 +32,7 @@
     - Class\.forName
   input_case: exact
   severity: info
+  suggest: 
 - id: api_crypto
   description: Crypto
   type: RegexOr
@@ -38,6 +42,7 @@
     - bouncycastle\.crypto
   input_case: exact
   severity: info
+  suggest: 
 - id: api_start_activity
   description: Starting Activity
   type: RegexOr
@@ -46,6 +51,7 @@
     - startActivityForResult\(
   input_case: exact
   severity: info
+  suggest: 
 - id: api_start_service
   description: Starting Service
   type: RegexOr
@@ -54,6 +60,7 @@
     - bindService\(
   input_case: exact
   severity: info
+  suggest: 
 - id: api_send_broadcast
   description: Sending Broadcast
   type: RegexOr
@@ -63,6 +70,7 @@
     - sendStickyBroadcast\(
   input_case: exact
   severity: info
+  suggest: 
 - id: api_local_file_io
   description: Local File I/O Operations
   type: RegexOr
@@ -75,6 +83,7 @@
     - openOrCreateDatabase
   input_case: exact
   severity: info
+  suggest: 
 - id: api_ipc
   description: Inter Process Communication
   type: RegexOr
@@ -85,6 +94,7 @@
     - Intent
   input_case: exact
   severity: info
+  suggest: 
 - id: api_web
   description: 'HTTP Requests, Connections and Sessions'
   type: RegexOr
@@ -94,6 +104,7 @@
     - http\.impl\.client\.AbstractHttpClient
   input_case: exact
   severity: info
+  suggest: 
 - id: api_http_connection
   description: HTTP Connection
   type: RegexAnd
@@ -102,6 +113,7 @@
     - openConnection|connect|HttpRequest
   input_case: exact
   severity: info
+  suggest: 
 - id: api_dex_manipulate
   description: Load and Manipulate Dex Files
   type: RegexAnd
@@ -111,12 +123,14 @@
     - loadDex|loadClass|DexClassLoader|loadDexFile
   input_case: exact
   severity: info
+  suggest: 
 - id: api_content_provider
   description: Content Provider
   type: Regex
   pattern: android\.content\.ContentProvider
   input_case: exact
   severity: info
+  suggest: 
 - id: api_obfuscation
   description: Obfuscation
   type: RegexAnd
@@ -125,6 +139,7 @@
     - getObfuscator
   input_case: exact
   severity: info
+  suggest: 
 - id: api_os_command
   description: Execute OS Command
   type: RegexAnd
@@ -132,7 +147,8 @@
     - getRuntime\(\)\.exec\(
     - getRuntime\(
   input_case: exact
-  severity: info
+  severity: high
+  suggest: 您在以下代码位置使用了动态执行 shell 命令，请确认执行的命令是否可控，是否存在安全隐患?
 - id: api_keystore
   description: Android Keystore
   type: RegexAnd
@@ -141,6 +157,7 @@
     - Keystore\.getInstance\(
   input_case: exact
   severity: info
+  suggest: 
 - id: api_tcp_server
   description: TCP Server Socket
   type: RegexAnd
@@ -149,6 +166,7 @@
     - net\.ServerSocket
   input_case: exact
   severity: info
+  suggest: 
 - id: api_tcp
   description: TCP Socket
   type: RegexAnd
@@ -157,6 +175,7 @@
     - net\.Socket
   input_case: exact
   severity: info
+  suggest: 
 - id: api_udp_datagram
   description: UDP Datagram Packet
   type: RegexAnd
@@ -165,6 +184,7 @@
     - net\.DatagramPacket
   input_case: exact
   severity: info
+  suggest: 
 - id: api_udp_datagram_socket
   description: UDP Datagram Socket
   type: RegexAnd
@@ -173,6 +193,7 @@
     - net\.DatagramSocket
   input_case: exact
   severity: info
+  suggest: 
 - id: api_webview
   description: WebView JavaScript Interface
   type: RegexAnd
@@ -182,6 +203,7 @@
     - android\.webkit
   input_case: exact
   severity: info
+  suggest: 
 - id: api_webview_get
   description: WebView GET Request
   type: RegexAnd
@@ -191,6 +213,7 @@
     - android\.webkit
   input_case: exact
   severity: info
+  suggest: 
 - id: api_webview_post
   description: WebView POST Request
   type: RegexAnd
@@ -200,6 +223,7 @@
     - android\.webkit
   input_case: exact
   severity: info
+  suggest: 
 - id: api_notifications
   description: Android Notifications
   type: RegexAnd
@@ -208,6 +232,7 @@
     - notify
   input_case: exact
   severity: info
+  suggest: 
 - id: api_get_cell
   description: Get Cell Information
   type: RegexAnd
@@ -216,6 +241,7 @@
     - getAllCellInfo
   input_case: exact
   severity: info
+  suggest: 
 - id: api_get_location
   description: Get Cell Location
   type: RegexAnd
@@ -223,147 +249,8 @@
     - telephony\.TelephonyManager
     - getCellLocation
   input_case: exact
-  severity: info
-- id: api_get_subscriber
-  description: Get Subscriber ID
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getSubscriberId
-  input_case: exact
-  severity: info
-- id: api_get_device
-  description: 'Get Device ID, IMEI,MEID/ESN etc'
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getDeviceId
-    - getImei\(
-    - getMeid\(
-  input_case: exact
-  severity: info
-- id: api_get_soft
-  description: 'Get Software Version, IMEI/SV etc'
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getDeviceSoftwareVersion
-  input_case: exact
-  severity: info
-- id: api_get_sim_serial
-  description: Get SIM Serial Number
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getSimSerialNumber
-  input_case: exact
-  severity: info
-- id: api_get_sim_provider
-  description: Get SIM Provider Details
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getSimOperator
-  input_case: exact
-  severity: info
-- id: api_get_sim_operator
-  description: Get SIM Operator Name
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getSimOperatorName
-  input_case: exact
-  severity: info
-- id: api_get_phone
-  description: Get Phone Number
-  type: RegexAnd
-  pattern:
-    - telephony\.TelephonyManager
-    - getLine1Number
-  input_case: exact
-  severity: info
-- id: api_sms_call
-  description: 'Query Database of SMS, Contacts etc'
-  type: RegexAnd
-  pattern:
-    - content\.ContentResolver
-    - query
-  input_case: exact
-  severity: info
-- id: api_send_sms
-  description: Send SMS
-  type: RegexAndOr
-  pattern:
-    - telephony\.SmsManager
-    - - sendMultipartTextMessage
-      - sendTextMessage
-      - vnd\.android-dir\/mms-sms
-  input_case: exact
-  severity: info
-- id: api_url
-  description: URL Connection to file/http/https/ftp/jar
-  type: RegexAndOr
-  pattern:
-    - net\.URLConnection
-    - - openConnection
-      - connect
-      - openStream
-  input_case: exact
-  severity: info
-- id: api_jar_url
-  description: JAR URL Connection
-  type: RegexAndOr
-  pattern:
-    - net\.JarURLConnection
-    - - JarURLConnection
-      - 'jar:'
-  input_case: exact
-  severity: info
-- id: api_https_connection
-  description: HTTPS Connection
-  type: RegexAndOr
-  pattern:
-    - javax\.net\.ssl\.HttpsURLConnection
-    - - HttpsURLConnection
-      - connect
-  input_case: exact
-  severity: info
-- id: api_clipboard
-  description: Set or Read Clipboard data
-  type: RegexAndOr
-  pattern:
-    - content\.ClipboardManager
-    - - CLIPBOARD_SERVICE
-      - ClipboardManager
-  input_case: exact
-  severity: info
-- id: api_base64_encode
-  description: Base64 Encode
-  type: RegexAndOr
-  pattern:
-    - android\.util\.Base64
-    - - \.encodeToString
-      - \.encode
-  input_case: exact
-  severity: info
-- id: api_base64_decode
-  description: Base64 Decode
-  type: RegexAndOr
-  pattern:
-    - android\.util\.Base64
-    - - \.decodeToString
-      - \.decode
-  input_case: exact
-  severity: info
-- id: api_message_digest
-  description: Message Digest
-  type: RegexAndOr
-  pattern:
-    - java\.security\.MessageDigest
-    - - MessageDigestSpi
-      - MessageDigest
-  input_case: exact
-  severity: info
+  severity: high
+  suggest: 您在以下代码位置获取了设备定位，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
 - id: api_gps
   description: GPS Location
   type: RegexAndOr
@@ -374,7 +261,172 @@
       - getLatitude\(
       - getLongitude\(
   input_case: exact
+  severity: high
+  suggest: 您在以下代码位置获取了设备 GPS 定位，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_subscriber
+  description: Get Subscriber ID
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getSubscriberId
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置获取了设备 SIM 卡唯一标识 IMSI，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_device_id
+  description: 'Get IMEI'
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getDeviceId
+    - getImei\(
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置获取了设备 IMEI，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_meid
+  description: 'Get MEID'
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getMeid\(
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置获取了设备 MEID，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_soft
+  description: 'Get Software Version, IMEI/SV etc'
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getDeviceSoftwareVersion
+  input_case: exact
   severity: info
+  suggest: 
+- id: api_get_sim_serial
+  description: Get SIM Serial Number
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getSimSerialNumber
+  input_case: exact
+  severity: info
+  suggest: 您在以下代码位置获取了设备 SIM 卡序列号，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_sim_provider
+  description: Get SIM Provider Details
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getSimOperator
+  input_case: exact
+  severity: warning
+  suggest: 您在以下代码位置获取了设备 SIM 卡 mcc+mnc，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_sim_operator
+  description: Get SIM Operator Name
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getSimOperatorName
+  input_case: exact
+  severity: warning
+  suggest: 您在以下代码位置获取了设备 SIM 运营商，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_get_phone
+  description: Get Phone Number
+  type: RegexAnd
+  pattern:
+    - telephony\.TelephonyManager
+    - getLine1Number
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置获取了设备电话号码，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_sms_call
+  description: 'Query Database of SMS, Contacts etc'
+  type: RegexAnd
+  pattern:
+    - content\.ContentResolver
+    - query
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置获取了设备 SIM 卡序列号/mcc+mnc/运营商/手机号码，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
+- id: api_send_sms
+  description: Send SMS
+  type: RegexAndOr
+  pattern:
+    - telephony\.SmsManager
+    - - sendMultipartTextMessage
+      - sendTextMessage
+      - vnd\.android-dir\/mms-sms
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置有发送短信的行为，请确认是否有违规发送短信造成用户财产损失的情况
+- id: api_url
+  description: URL Connection to file/http/https/ftp/jar
+  type: RegexAndOr
+  pattern:
+    - net\.URLConnection
+    - - openConnection
+      - connect
+      - openStream
+  input_case: exact
+  severity: info
+  suggest: 
+- id: api_jar_url
+  description: JAR URL Connection
+  type: RegexAndOr
+  pattern:
+    - net\.JarURLConnection
+    - - JarURLConnection
+      - 'jar:'
+  input_case: exact
+  severity: info
+  suggest: 
+- id: api_https_connection
+  description: HTTPS Connection
+  type: RegexAndOr
+  pattern:
+    - javax\.net\.ssl\.HttpsURLConnection
+    - - HttpsURLConnection
+      - connect
+  input_case: exact
+  severity: info
+  suggest: 
+- id: api_clipboard
+  description: Set or Read Clipboard data
+  type: RegexAndOr
+  pattern:
+    - content\.ClipboardManager
+    - - CLIPBOARD_SERVICE
+      - ClipboardManager
+  input_case: exact
+  severity: high
+  suggest: 您在以下代码位置有读取设备剪切板数据，请注意确认是否有收集用户使用数据的违规收集隐私行为。
+- id: api_base64_encode
+  description: Base64 Encode
+  type: RegexAndOr
+  pattern:
+    - android\.util\.Base64
+    - - \.encodeToString
+      - \.encode
+  input_case: exact
+  severity: info
+  suggest: 
+- id: api_base64_decode
+  description: Base64 Decode
+  type: RegexAndOr
+  pattern:
+    - android\.util\.Base64
+    - - \.decodeToString
+      - \.decode
+  input_case: exact
+  severity: info
+  suggest: 
+- id: api_message_digest
+  description: Message Digest
+  type: RegexAndOr
+  pattern:
+    - java\.security\.MessageDigest
+    - - MessageDigestSpi
+      - MessageDigest
+  input_case: exact
+  severity: info
+  suggest: 
 - id: api_installed
   description: Get Installed Applications
   type: RegexAndOr
@@ -385,6 +437,7 @@
       - getInstalledPackages\(
   input_case: exact
   severity: info
+  suggest: 
 - id: api_get_wifi
   description: Get WiFi Details
   type: RegexAndOr
@@ -397,7 +450,8 @@
       - getIpAddress\(
       - getMacAddress\(
   input_case: exact
-  severity: info
+  severity: high
+  suggest: 您在以下代码位置获取了设备 Wifi 信息(可能包含 IP 地址、Mac 地址)，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
 - id: api_get_network
   description: Get Network Interface information
   type: RegexAndOr
@@ -407,7 +461,8 @@
       - getInetAddresses\(
       - getHostAddress\(
   input_case: exact
-  severity: info
+  severity: high
+  suggest: 您在以下代码位置获取了设备网络信息(可能包含 IP 地址、Mac 地址)，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
 - id: api_get_advertising
   description: Get Android Advertising ID
   type: RegexAndOr
@@ -416,7 +471,8 @@
     - - getAdvertisingIdInfo\(
       - getAdvertisingId\(
   input_case: exact
-  severity: info
+  severity: high
+  suggest: 您在以下代码位置获取了广告 ID，请注意根据《App违法违规收集使用个人信息行为认定方法》(http://www.cac.gov.cn/2019-12/27/c_1578986455686625.htm)看看您有没有违规收集个人信息哦
 - id: api_certificate_handling
   description: Certificate Handling
   type: Regex

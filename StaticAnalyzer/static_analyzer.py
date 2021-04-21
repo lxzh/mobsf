@@ -45,12 +45,13 @@ from StaticAnalyzer.shared_func import (
     html_and_pdf,
 )
 
+from StaticAnalyzer.dvm_permissions_cn import DVM_PERMISSIONS
 from androguard.core.bytecodes import apk
 
 
 logger = logging.getLogger(__name__)
 
-def static_analyzer_local(filepath, outpath = None):
+def static_analyzer_local(filepath, outpath = None, category = -1):
     """Do static analysis on an request and save to db."""
     try:
         filename = os.path.basename(filepath)
@@ -172,6 +173,35 @@ def static_analyzer_local(filepath, outpath = None):
                     app_dic['app_dir'],
                     'apk',
                     app_dic['manifest_file'])
+                    
+                permissions = man_an_dic['permissons']
+                api_permissions = code_an_dic['api_permissions']
+                manifest_permissions = DVM_PERMISSIONS['MANIFEST_PERMISSION']
+                # print("*************permissions *&& api_permissions*************")
+                # print(permissions)
+                # print("**************************")
+                # print(api_permissions)
+                # print("*************permissions *&& api_permissions*************")
+                for permission in permissions:
+                    # print(permission)
+                    # print(permissions[permission])
+                    if permission in api_permissions:
+                        permissions[permission]['use'] = True
+                        permissions[permission]['suggest'] = ''
+                    else:
+                        permissions[permission]['use'] = False
+                        permissions[permission]['suggest'] = '您在 AndroidManifest.xml 中配置了%s权限，但是并未使用到该权限相关 API，建议您从配置清单删除该权限'%permission
+                for permission in api_permissions:
+                    per_info = api_permissions[permission]['metadata']
+                    # print(per_info)
+                    name = per_info['name']
+                    if not permission in permissions:
+                        permissions[permission] = {}
+                        permissions[permission]['status'] = manifest_permissions[name][0]
+                        permissions[permission]['info'] = manifest_permissions[name][1]
+                        permissions[permission]['description'] = manifest_permissions[name][2]
+                        permissions[permission]['use'] = True
+                        permissions[permission]['suggest'] = '您使用了该权限相关 API, 但未在 AndroidManifest.xml 中配置，建议删除相关 API 调用，或者添加该权限配置'
 
                 # Copy App icon
                 copy_icon(app_dic['md5'], app_dic['icon_path'])
