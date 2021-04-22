@@ -218,9 +218,9 @@ def static_analyzer_local(filepath, outpath = None, category = -1):
                 context['average_cvss'], context[
                     'security_score'] = score(context['code_analysis'])
 
-                rst_name = os.path.join(app_dic['app_dir'], checksum[0:8])
+                rst_name = checksum[0:8]
                 write_to_file(context, app_dic['app_dir'], rst_name)
-                write_to_html_and_pdf(context, rst_name)
+                write_to_html_and_pdf(context, app_dic['app_dir'], rst_name)
                 return context
             else:
                 err = ('Only APK Source code supported now!')
@@ -245,9 +245,9 @@ def write_to_file(context, dir, rst_name):
     out.write(str(context))
     out.close
 
-def write_to_html_and_pdf(context, rst_name):
-    htmlname = rst_name + '.html'
-    pdfname = rst_name + '.pdf'
+def write_to_html_and_pdf(context, dir, rst_name):
+    htmlname = os.path.join(dir, rst_name + '.html')
+    pdfname = os.path.join(dir, rst_name + '.pdf')
     html_and_pdf(context, htmlname, pdfname)
 
 
